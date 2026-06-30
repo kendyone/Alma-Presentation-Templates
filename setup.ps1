@@ -18,8 +18,9 @@ if (-not (Test-Path $TargetDir)) {
 Copy-Item $SourceFile $TargetFile -Force
 
 Write-Host ""
+Write-Host ""
 Write-Host "Done! /present is now available in any Claude Code conversation." -ForegroundColor Green
 Write-Host ""
-Write-Host "When you run /present, Claude will ask for the folder path automatically." -ForegroundColor Cyan
-Write-Host "Your folder is at: $RepoPath"
+Write-Host "IMPORTANT — copy this path, Claude will ask for it when you run /present:" -ForegroundColor Yellow
+Write-Host "$RepoPath" -ForegroundColor Cyan
 Write-Host ""
