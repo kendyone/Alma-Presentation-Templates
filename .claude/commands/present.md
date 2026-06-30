@@ -5,7 +5,7 @@ Your task is to generate a self-contained HTML presentation in the Alma Career d
 Work through three phases in order: **onboarding → content → generation**. Never skip phases.
 
 **Before asking anything**, tell the user:
-> Before we start — you can browse all available slide layouts at **localhost:4200/showcase.html** (open it in your browser while the server is running). It shows live previews of all 28 templates, so you can point me to specific ones if you like.
+> Before we start — you can browse all available slide layouts at **localhost:4200/showcase.html** (open it in your browser while the server is running). It shows live previews of all 29 templates, so you can point me to specific ones if you like.
 
 ---
 
@@ -122,7 +122,7 @@ The output is a **single self-contained HTML file** with no external dependencie
   [inline player.css]
 
   /* Base slide */
-  .slide { width: 1920px; height: 1080px; background: #FFFDFD; padding: 72px 80px; display: flex; flex-direction: column; overflow: hidden; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; padding: 72px 80px; display: flex; flex-direction: column; overflow: hidden; }
 
   /* Per-layout CSS — copy directly from each template */
   [layout-specific CSS]

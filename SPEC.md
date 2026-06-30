@@ -561,3 +561,20 @@ AI odhadne počet řádků každého nadpisu, vezme maximum přes všechny v řa
 - Color order: turquoise (#4DD7BE) · violet (#8F66FF) · blue (#3B72FF) · yellow (#FFCB3B) · orange (#FD7E40) — use first N.
 
 **Forbidden:** fewer than 3 or more than 6 items, long descriptions (no wrapping), color mismatch.
+
+---
+
+### Layout_29_Quarterly_Detail_Notes
+
+**File:** `templates/layout-29-quarterly-detail-notes.html`
+
+**When to use:** Detailed activity breakdown for exactly 2 time periods (typically Q1+Q2). When roadmap content is too rich for Layout_25/26.
+
+**Allowed content:**
+- 1× Headline + 1× Subtitle
+- 2× Period headers (e.g. Q1, Q2) with color: `q-header--yellow` · `q-header--orange` · `q-header--violet` · `q-header--turquoise`
+- 4–5 `.topic` blocks per column. Each topic: `.topic-title` (bold) + optional `.topic-desc` (regular, max ~150 chars)
+
+**Structure rule:** HTML is interleaved — period headers in one grid row, then topic pairs row by row. Do NOT restructure into two separate column divs. CSS grid aligns matching topics horizontally automatically.
+
+**Forbidden:** bullet points, images/charts inside columns, more than 2 periods, asymmetric header heights, more than 5 topics per column.
