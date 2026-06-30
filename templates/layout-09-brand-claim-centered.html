@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .claim-card {
+    width: 1760px;
+    height: 936px;
+    background: #1D1D1D;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 0 160px;
+    text-align: center;
+  }
+
+  .claim-card[data-theme="yellow"]    { background: #FFCB3B; }
+  .claim-card[data-theme="turquoise"] { background: #4DD7BE; }
+  .claim-card[data-theme="violet"]    { background: #8F66FF; }
+  .claim-card[data-theme="orange"]    { background: #FD7E40; }
+
+  .claim-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .claim-card[data-theme="yellow"]    .claim-eyebrow,
+  .claim-card[data-theme="turquoise"] .claim-eyebrow { color: rgba(0,0,0,0.5); }
+  .claim-card[data-theme="orange"]    .claim-eyebrow { color: rgba(0,0,0,0.5); }
+
+  .claim-headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 90px;
+    line-height: 98px;
+    color: #FFFFFF;
+    max-width: 1300px;
+  }
+
+  .claim-card[data-theme="yellow"]    .claim-headline,
+  .claim-card[data-theme="turquoise"] .claim-headline,
+  .claim-card[data-theme="orange"]    .claim-headline { color: #1D1D1D; }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_09_Brand_Claim_Centered
+  USE: Single key claim, slogan, or brand value — maximum visual impact on one short idea.
+  THEME: set data-theme on .claim-card — "dark" (default), "yellow", "turquoise", "violet", "orange"
+  EYEBROW: remove <p class="claim-eyebrow"> if not needed.
+  FORBIDDEN: body paragraph, lists, icons, metrics, text >80 chars.
+-->
+
+<section class="slide" data-layout="Layout_09_Brand_Claim_Centered">
+  <div class="claim-card" data-theme="dark">
+
+    <!-- Optional: remove if no eyebrow -->
+    <p class="claim-eyebrow reveal" style="--delay:0.1s">Our brand promise</p>
+
+    <h2 class="claim-headline reveal" style="--delay:0.2s">A better world of work for everyone</h2>
+
+  </div>
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

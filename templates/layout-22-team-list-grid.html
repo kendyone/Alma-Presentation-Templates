@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: #1D1D1D;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #57575B;
+  }
+
+  .persons-grid {
+    --photo: 180px;
+    --rgap: 56px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 56px;
+    row-gap: var(--rgap);
+    width: 1760px;
+    align-content: start;
+  }
+
+  .person-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .person-photo {
+    width: var(--photo);
+    height: var(--photo);
+    border-radius: 32px;
+    flex-shrink: 0;
+    background: #F0F0F0;
+    object-fit: cover;
+    display: block;
+  }
+
+  .person-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .person-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 44px;
+    color: #1D1D1D;
+  }
+
+  .person-role {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: #57575B;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_22_Team_List_Grid
+  USE: 5–8 people. More space-efficient than Layout_21 (which is for 2–4).
+  GRID: 2 columns, rows auto-generated. Split people evenly: ceil(N/2) left, floor(N/2) right.
+  SCALING:
+    5–6 people (3 rows): default — no inline style needed.
+    7–8 people (4 rows): add style="--photo: 150px; --rgap: 40px;" to .persons-grid.
+  PHOTO: replace .person-photo <div> with <img class="person-photo" src="..." alt="...">
+  NAME: max 30 chars (1 line). ROLE: max 40 chars (1–2 lines).
+  FORBIDDEN: any text beyond name and role, uneven column splits (e.g. 5 left + 1 right).
+-->
+
+<section class="slide" data-layout="Layout_22_Team_List_Grid">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Headline</p>
+  </div>
+
+  <!-- Default: 6 people, 3 rows. For 7–8 add style="--photo:150px;--rgap:40px;" -->
+  <div class="persons-grid">
+
+    <div class="person-card reveal" style="--delay:0.25s">
+      <div class="person-photo"></div>
+      <div class="person-info">
+        <p class="person-name">Tihana Biga-Laatikainen</p>
+        <p class="person-role">Lead UI Designer</p>
+      </div>
+    </div>
+
+    <div class="person-card reveal" style="--delay:0.30s">
+      <div class="person-photo"></div>
+      <div class="person-info">
+        <p class="person-name">Marek Vrtich</p>
+        <p class="person-role">Lead UI Designer</p>
+      </div>
+    </div>
+
+    <div class="person-card reveal" style="--delay:0.38s">
+      <div class="person-photo"></div>
+      <div class="person-info">
+        <p class="person-name">Jiří Bárta</p>
+        <p class="person-role">Lead UI Designer</p>
+      </div>
+    </div>
+
+    <div class="person-card reveal" style="--delay:0.43s">
+      <div class="person-photo"></div>
+      <div class="person-info">
+        <p class="person-name">Jiří Bárta</p>
+        <p class="person-role">Lead UI Designer</p>
+      </div>
+    </div>
+
+    <div class="person-card reveal" style="--delay:0.51s">
+      <div class="person-photo"></div>
+      <div class="person-info">
+        <p class="person-name">Tomas Litera</p>
+        <p class="person-role">Lead UI Designer</p>
+      </div>
+    </div>
+
+    <div class="person-card reveal" style="--delay:0.56s">
+      <div class="person-photo"></div>
+      <div class="person-info">
+        <p class="person-name">Tihana Biga-Laatikainen</p>
+        <p class="person-role">Lead UI Designer</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .content-row {
+    width: 1760px;
+    height: 936px;
+    display: flex;
+    flex-direction: row;
+    gap: 56px;
+  }
+
+  .photo-block {
+    width: 852px;
+    height: 936px;
+    border-radius: 32px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #D0D0D0;
+  }
+
+  .text-block {
+    flex: 1;
+    height: 936px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 32px;
+  }
+
+  .text-headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 90px;
+    line-height: 98px;
+    color: #1D1D1D;
+  }
+
+  .text-body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #57575B;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_15_Image_Left_Text_Right
+  USE: Strong photo paired with a headline and optional short story. Vision, team, environment.
+  PHOTO: replace src with image path. The image fills 852×936px with object-fit: cover.
+  BODY: remove <p class="text-body"> if no supporting text is needed.
+  FORBIDDEN: bullet lists, charts, icons, more than one photo, body >300 chars.
+-->
+
+<section class="slide" data-layout="Layout_15_Image_Left_Text_Right">
+  <div class="content-row">
+
+    <img class="photo-block reveal" style="--delay:0.1s" src="" alt="">
+
+    <div class="text-block reveal" style="--delay:0.25s">
+      <h1 class="text-headline">Find the right candidates for your company</h1>
+      <!-- Optional: remove if no body text -->
+      <p class="text-body">Alma Career operates or cooperates with almost 30 job portals that are among the top in Europe and deliver more than 12 million responses to our clients per month.</p>
+    </div>
+
+  </div>
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

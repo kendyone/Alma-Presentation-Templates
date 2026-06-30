@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: #1D1D1D;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #57575B;
+  }
+
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 1760px;
+  }
+
+  .item-row {
+    display: flex;
+    flex-direction: row;
+    gap: 56px;
+    width: 1760px;
+  }
+
+  .item-col {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 20px 32px 20px 0;
+  }
+
+  .item-col--empty {
+    visibility: hidden;
+  }
+
+  .item-dot {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #4DD7BE;
+    flex-shrink: 0;
+  }
+
+  .item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .item-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 44px;
+    color: #1D1D1D;
+  }
+
+  .item-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 44px;
+    color: #1D1D1D;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_14_Bullet_Points_Double_Column_With_Titles
+  USE: 4–8 items where a bold title and short description are needed per point.
+  ROW ALIGNMENT: pair items left/right in each .item-row. Flexbox stretches both cells to equal height automatically.
+  ODD LAST ITEM: add a second .item-col.item-col--empty to keep the grid stable.
+  FORBIDDEN: more than 8 items, asymmetric splits, long paragraphs (desc >120 chars), images, charts.
+-->
+
+<section class="slide" data-layout="Layout_14_Bullet_Points_Double_Column_With_Titles">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Headline</p>
+  </div>
+
+  <div class="item-list">
+
+    <div class="item-row reveal" style="--delay:0.25s">
+      <div class="item-col">
+        <div class="item-dot"></div>
+        <div class="item-text">
+          <span class="item-title">A team of 600+ experts</span>
+          <p class="item-desc">A team of 600+ experts who live and breathe the world of work every day</p>
+        </div>
+      </div>
+      <div class="item-col">
+        <div class="item-dot"></div>
+        <div class="item-text">
+          <span class="item-title">A team of 600+ experts</span>
+          <p class="item-desc">A team of 600+ experts who live and breathe</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-row reveal" style="--delay:0.40s">
+      <div class="item-col">
+        <div class="item-dot"></div>
+        <div class="item-text">
+          <span class="item-title">A team of 600+ experts</span>
+          <p class="item-desc">A team of 600+ experts who live and breatheA team of 600+ experts who live and breathe the world of work every day</p>
+        </div>
+      </div>
+      <div class="item-col">
+        <div class="item-dot"></div>
+        <div class="item-text">
+          <span class="item-title">A team of 600+ experts</span>
+          <p class="item-desc">A team of 600+ experts who live and breathe the world of work every day</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-row reveal" style="--delay:0.55s">
+      <div class="item-col">
+        <div class="item-dot"></div>
+        <div class="item-text">
+          <span class="item-title">A team of 600+ experts</span>
+          <p class="item-desc">A team of 600+ experts who live and breathe</p>
+        </div>
+      </div>
+      <!-- odd last item: empty cell keeps the grid stable -->
+      <div class="item-col item-col--empty"></div>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

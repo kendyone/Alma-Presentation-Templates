@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 56px;
+  }
+
+  .illustration {
+    width: 416px;
+    height: 440px;
+    flex-shrink: 0;
+    border-radius: 32px;
+    background: #F2F3F5;
+    object-fit: cover;
+    display: block;
+  }
+
+  .text-block {
+    width: 1000px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  .claim {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 90px;
+    line-height: 98px;
+    color: #1D1D1D;
+  }
+
+  .speaker-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .speaker-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 44px;
+    color: #1D1D1D;
+  }
+
+  .speaker-role {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: #57575B;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_23_Farewell_Single_Speaker
+  USE: Final slide of a presentation — exactly 1 speaker.
+  For 2+ speakers use Layout_24.
+  CLAIM: max 60 chars (Newsreader 600, 90px). NAME: max 30 chars. ROLE: max 30 chars.
+  ILLUSTRATION: replace .illustration <div> with <img class="illustration" src="..." alt="...">
+  FORBIDDEN: body text, bullet lists, charts, more than 1 speaker.
+-->
+
+<section class="slide" data-layout="Layout_23_Farewell_Single_Speaker">
+  <div class="content-area">
+
+    <div class="illustration reveal" style="--delay:0.1s"></div>
+
+    <div class="text-block">
+      <h1 class="claim reveal" style="--delay:0.2s">Thank you for your attention.</h1>
+      <div class="speaker-info reveal" style="--delay:0.35s">
+        <p class="speaker-name">Marek Vrtich</p>
+        <p class="speaker-role">Lead UI Designer</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

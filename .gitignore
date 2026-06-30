@@ -1,0 +1,10 @@
+# Drop your images here — they stay local, not in git
+images/*
+!images/.gitkeep
+
+# Generated presentations
+output/*
+!output/.gitkeep
+
+# Local editor config
+.claude/launch.json

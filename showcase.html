@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alma Presentation — Layout Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #F5F4F2;
+    --surface:   #FFFFFF;
+    --border:    #E2E0DC;
+    --text:      #1D1D1D;
+    --muted:     #57575B;
+    --accent:    #FFCB3B;
+    --accent-2:  #8F66FF;
+    --radius:    10px;
+    --thumb-w:   380px;
+    --thumb-h:   214px;
+    --scale:     0.1979; /* 380/1920 */
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    background: #1D1D1D;
+    color: #FFFFFF;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .header-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+
+  .header-request-btn {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1D1D1D;
+    background: #FFCB3B;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 18px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .header-request-btn:hover { background: #f0bc2a; }
+
+  /* ── Filter bar ── */
+  .filter-bar {
+    padding: 20px 48px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover { border-color: var(--text); color: var(--text); }
+
+  .filter-btn.active {
+    background: var(--text);
+    border-color: var(--text);
+    color: #FFFFFF;
+  }
+
+  /* ── Grid ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--thumb-w), 1fr));
+    gap: 24px;
+    padding: 36px 48px 64px;
+  }
+
+  /* ── Card ── */
+  .card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1.5px solid var(--border);
+    transition: box-shadow 0.2s, border-color 0.2s;
+    cursor: default;
+    position: relative;
+  }
+
+  .card:hover {
+    border-color: #C8C5BF;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  /* iframe thumbnail */
+  .thumb-wrap {
+    width: var(--thumb-w);
+    height: var(--thumb-h);
+    overflow: hidden;
+    background: #F0EEEB;
+    margin: 0 auto;
+  }
+
+  .thumb-wrap iframe {
+    width: 1920px;
+    height: 1080px;
+    border: none;
+    transform: scale(var(--scale));
+    transform-origin: top left;
+    pointer-events: none;
+  }
+
+  /* Card tag — overlay on thumbnail */
+  .card-tag {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Card meta */
+  .card-meta {
+    padding: 14px 16px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .card-info { flex: 1; min-width: 0; }
+
+  .card-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  /* Copy button */
+  .copy-btn {
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 5px 6px;
+    color: var(--muted);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    align-self: flex-start;
+    margin-top: 1px;
+  }
+  .copy-btn:hover { color: var(--text); border-color: var(--text); background: var(--bg); }
+  .copy-btn.copied { color: #1F564C; border-color: #4DD7BE; background: #DBF7F2; }
+
+  .tag-intro    { background: #E9E0FF; color: #432989; }
+  .tag-metrics  { background: #DBF7F2; color: #1F564C; }
+  .tag-text     { background: #FFF4D6; color: #7A5200; }
+  .tag-image    { background: #FFE5D9; color: #72371A; }
+  .tag-team     { background: #F0EEEB; color: #4A4A4E; }
+  .tag-roadmap  { background: #E8F4FF; color: #1A4A72; }
+  .tag-chart    { background: #FDE8FF; color: #6B1A72; }
+  .tag-divider  { background: #F0EEEB; color: #4A4A4E; }
+
+  .card[data-cat].hidden { display: none; }
+
+  /* ── Empty state ── */
+  .empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 0;
+    color: var(--muted);
+    font-size: 15px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="header-title">Browse all available slide templates (28)</p>
+  <a class="header-request-btn" href="mailto:jiri.barta@almamedia.com?subject=New%20presentation%20template%20request">Ask for a new template</a>
+</header>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="intro">Intro &amp; Outro</button>
+  <button class="filter-btn" data-filter="metrics">Metrics &amp; Data</button>
+  <button class="filter-btn" data-filter="chart">Charts</button>
+  <button class="filter-btn" data-filter="text">Text &amp; Lists</button>
+  <button class="filter-btn" data-filter="image">Image Layouts</button>
+  <button class="filter-btn" data-filter="team">Team</button>
+  <button class="filter-btn" data-filter="roadmap">Roadmap &amp; Progress</button>
+  <button class="filter-btn" data-filter="divider">Dividers</button>
+</div>
+
+<div class="grid" id="grid">
+
+  <div class="card" data-cat="chart">
+    <div class="thumb-wrap"><iframe src="templates/layout-01-barchart-ascending.html" loading="lazy"></iframe><span class="card-tag tag-chart">Chart</span></div>
+    <div class="card-meta">
+      <div class="card-info">
+        <div class="card-name">01. Bar Chart — Ascending</div>
+        <div class="card-desc">Animated horizontal bar chart for comparisons or rankings</div>
+      </div>
+      <button class="copy-btn" data-prompt="Use layout 01. Bar Chart — Ascending" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+
+  <div class="card" data-cat="metrics">
+    <div class="thumb-wrap"><iframe src="templates/layout-02-hero-metrics-tiles.html" loading="lazy"></iframe><span class="card-tag tag-metrics">Metrics</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">02. Hero Metrics — Tiles</div><div class="card-desc">3 large KPIs in coloured tiles with supporting labels</div></div><button class="copy-btn" data-prompt="Use layout 02. Hero Metrics — Tiles" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="metrics">
+    <div class="thumb-wrap"><iframe src="templates/layout-03-grid-metrics-4tiles.html" loading="lazy"></iframe><span class="card-tag tag-metrics">Metrics</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">03. Grid Metrics — 4 Tiles</div><div class="card-desc">Four metrics in a 2×2 grid with icons or labels</div></div><button class="copy-btn" data-prompt="Use layout 03. Grid Metrics — 4 Tiles" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="metrics">
+    <div class="thumb-wrap"><iframe src="templates/layout-04-grid-metrics-6tiles.html" loading="lazy"></iframe><span class="card-tag tag-metrics">Metrics</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">04. Grid Metrics — 6 Tiles</div><div class="card-desc">Six metrics in a 2×3 grid — compact data overview</div></div><button class="copy-btn" data-prompt="Use layout 04. Grid Metrics — 6 Tiles" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="roadmap">
+    <div class="thumb-wrap"><iframe src="templates/layout-05-progress-bars-simple.html" loading="lazy"></iframe><span class="card-tag tag-roadmap">Progress</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">05. Progress Bars — Simple</div><div class="card-desc">Multiple progress bars with percentage values</div></div><button class="copy-btn" data-prompt="Use layout 05. Progress Bars — Simple" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="roadmap">
+    <div class="thumb-wrap"><iframe src="templates/layout-06-progress-bars-variance.html" loading="lazy"></iframe><span class="card-tag tag-roadmap">Progress</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">06. Progress Bars — Variance</div><div class="card-desc">Progress bars with target vs actual comparison</div></div><button class="copy-btn" data-prompt="Use layout 06. Progress Bars — Variance" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="text">
+    <div class="thumb-wrap"><iframe src="templates/layout-07-quote-dark.html" loading="lazy"></iframe><span class="card-tag tag-text">Text</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">07. Quote — Dark</div><div class="card-desc">Full-screen dark slide with a featured quote and attribution</div></div><button class="copy-btn" data-prompt="Use layout 07. Quote — Dark" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="divider">
+    <div class="thumb-wrap"><iframe src="templates/layout-08-section-divider.html" loading="lazy"></iframe><span class="card-tag tag-divider">Divider</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">08. Section Divider</div><div class="card-desc">Chapter break slide with section title and number</div></div><button class="copy-btn" data-prompt="Use layout 08. Section Divider" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="divider">
+    <div class="thumb-wrap"><iframe src="templates/layout-09-brand-claim-centered.html" loading="lazy"></iframe><span class="card-tag tag-divider">Divider</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">09. Brand Claim</div><div class="card-desc">Full-screen centred statement or key message</div></div><button class="copy-btn" data-prompt="Use layout 09. Brand Claim" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="intro">
+    <div class="thumb-wrap"><iframe src="templates/layout-10-presentation-intro.html" loading="lazy"></iframe><span class="card-tag tag-intro">Intro</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">10. Intro — Single Speaker</div><div class="card-desc">Opening slide with one presenter, name and role</div></div><button class="copy-btn" data-prompt="Use layout 10. Intro — Single Speaker" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="intro">
+    <div class="thumb-wrap"><iframe src="templates/layout-11-presentation-intro-multispeaker.html" loading="lazy"></iframe><span class="card-tag tag-intro">Intro</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">11. Intro — Multi-Speaker</div><div class="card-desc">Opening slide with two or more presenters and photos</div></div><button class="copy-btn" data-prompt="Use layout 11. Intro — Multi-Speaker" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="text">
+    <div class="thumb-wrap"><iframe src="templates/layout-12-bullet-points-list.html" loading="lazy"></iframe><span class="card-tag tag-text">Text</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">12. Bullet Points — Single Column</div><div class="card-desc">Numbered or bulleted list with title and optional intro</div></div><button class="copy-btn" data-prompt="Use layout 12. Bullet Points — Single Column" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="text">
+    <div class="thumb-wrap"><iframe src="templates/layout-13-bullet-points-double-column.html" loading="lazy"></iframe><span class="card-tag tag-text">Text</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">13. Bullet Points — Double Column</div><div class="card-desc">Two columns of items — good for longer lists</div></div><button class="copy-btn" data-prompt="Use layout 13. Bullet Points — Double Column" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="text">
+    <div class="thumb-wrap"><iframe src="templates/layout-14-bullet-points-double-column-with-titles.html" loading="lazy"></iframe><span class="card-tag tag-text">Text</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">14. Bullet Points — Two Sections</div><div class="card-desc">Two columns, each with its own heading and bullet list</div></div><button class="copy-btn" data-prompt="Use layout 14. Bullet Points — Two Sections" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="image">
+    <div class="thumb-wrap"><iframe src="templates/layout-15-image-left-text-right.html" loading="lazy"></iframe><span class="card-tag tag-image">Image</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">15. Image Left — Text Right</div><div class="card-desc">Half-screen image on the left, text content on the right</div></div><button class="copy-btn" data-prompt="Use layout 15. Image Left — Text Right" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="image">
+    <div class="thumb-wrap"><iframe src="templates/layout-16-text-left-image-right.html" loading="lazy"></iframe><span class="card-tag tag-image">Image</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">16. Text Left — Image Right</div><div class="card-desc">Text content on the left, half-screen image on the right</div></div><button class="copy-btn" data-prompt="Use layout 16. Text Left — Image Right" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="text">
+    <div class="thumb-wrap"><iframe src="templates/layout-17-text-3-columns.html" loading="lazy"></iframe><span class="card-tag tag-text">Text</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">17. Text — 3 Columns</div><div class="card-desc">Three equal text blocks — great for comparing topics</div></div><button class="copy-btn" data-prompt="Use layout 17. Text — 3 Columns" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="text">
+    <div class="thumb-wrap"><iframe src="templates/layout-18-text-2-columns.html" loading="lazy"></iframe><span class="card-tag tag-text">Text</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">18. Text — 2 Columns</div><div class="card-desc">Two equal text blocks side by side</div></div><button class="copy-btn" data-prompt="Use layout 18. Text — 2 Columns" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="text">
+    <div class="thumb-wrap"><iframe src="templates/layout-19-text-2-columns-flexible.html" loading="lazy"></iframe><span class="card-tag tag-text">Text</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">19. Text — 2 Columns Flexible</div><div class="card-desc">Asymmetric columns — wider main content, narrower sidebar</div></div><button class="copy-btn" data-prompt="Use layout 19. Text — 2 Columns Flexible" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="team">
+    <div class="thumb-wrap"><iframe src="templates/layout-20-icon-grid-2to4.html" loading="lazy"></iframe><span class="card-tag tag-team">Grid</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">20. Icon Grid — 2 to 4 Items</div><div class="card-desc">2–4 items with icon, title and short description each</div></div><button class="copy-btn" data-prompt="Use layout 20. Icon Grid — 2 to 4 Items" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="team">
+    <div class="thumb-wrap"><iframe src="templates/layout-21-team-cards-horizontal.html" loading="lazy"></iframe><span class="card-tag tag-team">Team</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">21. Team Cards — Horizontal</div><div class="card-desc">Row of team member cards with photo, name and role</div></div><button class="copy-btn" data-prompt="Use layout 21. Team Cards — Horizontal" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="team">
+    <div class="thumb-wrap"><iframe src="templates/layout-22-team-list-grid.html" loading="lazy"></iframe><span class="card-tag tag-team">Team</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">22. Team List — Grid</div><div class="card-desc">Compact team grid for larger groups — photo, name, role</div></div><button class="copy-btn" data-prompt="Use layout 22. Team List — Grid" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="intro">
+    <div class="thumb-wrap"><iframe src="templates/layout-23-farewell-single-speaker.html" loading="lazy"></iframe><span class="card-tag tag-intro">Outro</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">23. Farewell — Single Speaker</div><div class="card-desc">Closing slide with one presenter and contact info</div></div><button class="copy-btn" data-prompt="Use layout 23. Farewell — Single Speaker" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="intro">
+    <div class="thumb-wrap"><iframe src="templates/layout-24-farewell-multi-speaker.html" loading="lazy"></iframe><span class="card-tag tag-intro">Outro</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">24. Farewell — Multi-Speaker</div><div class="card-desc">Closing slide with multiple presenters and contacts</div></div><button class="copy-btn" data-prompt="Use layout 24. Farewell — Multi-Speaker" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="roadmap">
+    <div class="thumb-wrap"><iframe src="templates/layout-25-roadmap-multi-task.html" loading="lazy"></iframe><span class="card-tag tag-roadmap">Roadmap</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">25. Roadmap — Multi-Task</div><div class="card-desc">Timeline with multiple parallel tasks and milestones</div></div><button class="copy-btn" data-prompt="Use layout 25. Roadmap — Multi-Task" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="roadmap">
+    <div class="thumb-wrap"><iframe src="templates/layout-26-roadmap-single-task.html" loading="lazy"></iframe><span class="card-tag tag-roadmap">Roadmap</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">26. Roadmap — Single Task</div><div class="card-desc">Single project timeline with phases and dates</div></div><button class="copy-btn" data-prompt="Use layout 26. Roadmap — Single Task" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="chart">
+    <div class="thumb-wrap"><iframe src="templates/layout-27-donut-chart-metrics.html" loading="lazy"></iframe><span class="card-tag tag-chart">Chart</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">27. Donut Chart</div><div class="card-desc">Animated donut chart with central metric and legend</div></div><button class="copy-btn" data-prompt="Use layout 27. Donut Chart" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+  <div class="card" data-cat="chart">
+    <div class="thumb-wrap"><iframe src="templates/layout-28-pie-chart-metrics.html" loading="lazy"></iframe><span class="card-tag tag-chart">Chart</span></div>
+    <div class="card-meta"><div class="card-info"><div class="card-name">28. Pie Chart</div><div class="card-desc">Animated pie chart with segment labels and legend</div></div><button class="copy-btn" data-prompt="Use layout 28. Pie Chart" title="Copy to clipboard"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 4V2.5A1.5 1.5 0 0 0 8.5 1H2.5A1.5 1.5 0 0 0 1 2.5V8.5A1.5 1.5 0 0 0 2.5 10H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.copy-btn');
+    if (!btn) return;
+    navigator.clipboard.writeText(btn.dataset.prompt).then(() => {
+      btn.classList.add('copied');
+      const icon = btn.innerHTML;
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = icon; }, 1500);
+    });
+  });
+
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card[data-cat]');
+  const grid = document.getElementById('grid');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      let visible = 0;
+
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.cat === filter;
+        const wasHidden = card.classList.contains('hidden');
+        card.classList.toggle('hidden', !match);
+
+        if (match) {
+          visible++;
+          if (wasHidden) {
+            const iframe = card.querySelector('iframe');
+            const src = iframe.src;
+            iframe.src = '';
+            iframe.src = src;
+          }
+        }
+      });
+
+      const empty = grid.querySelector('.empty');
+      if (visible === 0 && !empty) {
+        const el = document.createElement('div');
+        el.className = 'empty';
+        el.textContent = 'No layouts in this category.';
+        grid.appendChild(el);
+      } else if (visible > 0 && empty) {
+        empty.remove();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: #1D1D1D;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #57575B;
+  }
+
+  .bullet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 1760px;
+  }
+
+  .bullet-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    padding: 20px 0;
+    height: 90px;
+  }
+
+  .bullet-dot {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #FD7E40;
+    flex-shrink: 0;
+  }
+
+  .bullet-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 44px;
+    color: #1D1D1D;
+    max-width: 1300px;
+  }
+
+  .bullet-text strong {
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_12_Bullet_Points_List
+  USE: List of features, advantages, or summary steps (1–7 items).
+  FORBIDDEN: charts, metrics, paragraphs without a list, more than 7 bullets, nested bullets.
+  BOLD: use <strong> inside .bullet-text for key words only (max first 3–4 words).
+-->
+
+<section class="slide" data-layout="Layout_12_Bullet_Points_List">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Headline</p>
+  </div>
+
+  <div class="bullet-list">
+
+    <div class="bullet-row reveal" style="--delay:0.25s">
+      <div class="bullet-dot"></div>
+      <p class="bullet-text"><strong>A team of 600+ experts</strong> who live and breathe the world of work every day</p>
+    </div>
+
+    <div class="bullet-row reveal" style="--delay:0.32s">
+      <div class="bullet-dot"></div>
+      <p class="bullet-text"><strong>Innovative solutions</strong> tailored to your unique business needs.</p>
+    </div>
+
+    <div class="bullet-row reveal" style="--delay:0.39s">
+      <div class="bullet-dot"></div>
+      <p class="bullet-text"><strong>Proven track record</strong> of transforming organizational cultures for success.</p>
+    </div>
+
+    <div class="bullet-row reveal" style="--delay:0.46s">
+      <div class="bullet-dot"></div>
+      <p class="bullet-text"><strong>Comprehensive support</strong> from strategy development to implementation.</p>
+    </div>
+
+    <div class="bullet-row reveal" style="--delay:0.53s">
+      <div class="bullet-dot"></div>
+      <p class="bullet-text"><strong>Comprehensive support</strong> from strategy development to implementation.</p>
+    </div>
+
+    <div class="bullet-row reveal" style="--delay:0.60s">
+      <div class="bullet-dot"></div>
+      <p class="bullet-text"><strong>Comprehensive support</strong> from strategy development to implementation.</p>
+    </div>
+
+    <div class="bullet-row reveal" style="--delay:0.67s">
+      <div class="bullet-dot"></div>
+      <p class="bullet-text"><strong>Comprehensive support</strong> from strategy development to implementation.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

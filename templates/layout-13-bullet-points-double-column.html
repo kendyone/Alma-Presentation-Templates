@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: #1D1D1D;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #57575B;
+  }
+
+  .bullet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 1760px;
+  }
+
+  .bullet-row {
+    display: flex;
+    flex-direction: row;
+    gap: 56px;
+    width: 1760px;
+  }
+
+  .bullet-col {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 20px 24px 20px 0;
+    min-height: 90px;
+  }
+
+  .bullet-col--empty {
+    visibility: hidden;
+  }
+
+  .bullet-dot {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #4DD7BE;
+    flex-shrink: 0;
+  }
+
+  .bullet-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 44px;
+    color: #1D1D1D;
+    flex: 1;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_13_Bullet_Points_Double_Column
+  USE: 5–10 short comparable bullets split evenly into 2 columns.
+  For fewer than 5 bullets use Layout_12 instead.
+  ROW ALIGNMENT: pair bullets left/right — each .bullet-row contains exactly 2 .bullet-col.
+  ODD LAST BULLET: add a second .bullet-col.bullet-col--empty to keep the grid stable.
+  FORBIDDEN: more than 10 bullets, nested bullets, paragraphs, charts, asymmetric splits.
+-->
+
+<section class="slide" data-layout="Layout_13_Bullet_Points_Double_Column">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Headline</p>
+  </div>
+
+  <div class="bullet-list">
+
+    <div class="bullet-row reveal" style="--delay:0.25s">
+      <div class="bullet-col">
+        <div class="bullet-dot"></div>
+        <p class="bullet-text">A team of 600+ experts who live and breathe the world of work every day</p>
+      </div>
+      <div class="bullet-col">
+        <div class="bullet-dot"></div>
+        <p class="bullet-text">Innovative solutions tailored</p>
+      </div>
+    </div>
+
+    <div class="bullet-row reveal" style="--delay:0.35s">
+      <div class="bullet-col">
+        <div class="bullet-dot"></div>
+        <p class="bullet-text">Innovative solutions tailored</p>
+      </div>
+      <div class="bullet-col">
+        <div class="bullet-dot"></div>
+        <p class="bullet-text">Innovative solutions tailored to your unique business needs.</p>
+      </div>
+    </div>
+
+    <div class="bullet-row reveal" style="--delay:0.45s">
+      <div class="bullet-col">
+        <div class="bullet-dot"></div>
+        <p class="bullet-text">A team of 600+ experts who live and breathe the world of work every day</p>
+      </div>
+      <div class="bullet-col">
+        <div class="bullet-dot"></div>
+        <p class="bullet-text">Innovative solutions tailored to your unique business needs.</p>
+      </div>
+    </div>
+
+    <div class="bullet-row reveal" style="--delay:0.55s">
+      <div class="bullet-col">
+        <div class="bullet-dot"></div>
+        <p class="bullet-text">A team of 600+ experts</p>
+      </div>
+      <div class="bullet-col">
+        <div class="bullet-dot"></div>
+        <p class="bullet-text">A team of 600+ experts who live and breathe the world of work every day</p>
+      </div>
+    </div>
+
+    <div class="bullet-row reveal" style="--delay:0.65s">
+      <div class="bullet-col">
+        <div class="bullet-dot"></div>
+        <p class="bullet-text">A team of 600+ experts</p>
+      </div>
+      <!-- odd last bullet: empty cell keeps the grid stable -->
+      <div class="bullet-col bullet-col--empty"></div>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

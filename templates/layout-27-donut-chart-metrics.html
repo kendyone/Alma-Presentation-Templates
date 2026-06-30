@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --color-primary-black:   #1D1D1D;
+    --color-secondary-black: #57575B;
+    --color-bg-primary:      #FFFFFF;
+    --c-yellow:    #FFCB3B;
+    --c-orange:    #FD7E40;
+    --c-turquoise: #4DD7BE;
+    --c-violet:    #8F66FF;
+    --c-blue:      #3B72FF;
+  }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: var(--color-bg-primary);
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+  .slide-header .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: var(--color-primary-black);
+  }
+  .slide-header .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: var(--color-secondary-black);
+  }
+
+  .content-row {
+    display: flex;
+    flex-direction: row;
+    gap: 56px;
+    height: 756px;
+    align-items: center;
+  }
+
+  .chart-area {
+    width: 756px;
+    height: 756px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #donut-chart {
+    width: 756px;
+    height: 756px;
+  }
+
+  .legend {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .legend-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    padding: 20px 0;
+  }
+
+  .legend-value {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 56px;
+    width: 152px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .legend-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 44px;
+    color: var(--color-primary-black);
+  }
+
+  .c-yellow    { color: #B78600; }
+  .c-orange    { color: var(--c-orange); }
+  .c-turquoise { color: var(--c-turquoise); }
+  .c-violet    { color: var(--c-violet); }
+  .c-blue      { color: var(--c-blue); }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_27_Donut_Chart_Metrics
+  USE: 3–6 categories that partition a whole (percentages sum to 100%).
+  FORBIDDEN: <3 or >6 items, bullets/tables, color mismatch between segment and value.
+  STRUCTURE: headline + subtitle + donut chart (left 756px) + metric legend (right flex:1).
+  LEGEND ITEM: colored % value (152px, Newsreader 56px) + description (max ~120 chars, 2 lines).
+  COLOR SLOTS: yellow (#FFCB3B) · orange (#FD7E40) · turquoise (#4DD7BE) · violet (#8F66FF) · blue (#3B72FF)
+    → For N categories use the first N colors in order.
+    → Each legend-item needs data-color="<segment hex>" matching the visual donut segment.
+    → Text color for yellow uses .c-yellow (#B78600 for readability); rest use full-saturation.
+  ANIMATION: .chart-area.reveal + .legend-item.reveal with stagger.
+-->
+
+<section class="slide" data-layout="Layout_27_Donut_Chart_Metrics">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Subtitle text goes here</p>
+  </div>
+
+  <div class="content-row">
+
+    <div class="chart-area reveal" style="--delay:0.2s">
+      <svg id="donut-chart" viewBox="0 0 756 756" xmlns="http://www.w3.org/2000/svg">
+        <!-- Segments injected by init script below -->
+      </svg>
+    </div>
+
+    <div class="legend">
+
+      <div class="legend-item reveal" data-color="#FFCB3B" style="--delay:0.35s">
+        <span class="legend-value c-yellow">47%</span>
+        <p class="legend-desc">Description of this category. Keep it brief and clear — max two lines.</p>
+      </div>
+
+      <div class="legend-item reveal" data-color="#FD7E40" style="--delay:0.45s">
+        <span class="legend-value c-orange">23%</span>
+        <p class="legend-desc">Description of this category. Keep it brief and clear — max two lines.</p>
+      </div>
+
+      <div class="legend-item reveal" data-color="#4DD7BE" style="--delay:0.55s">
+        <span class="legend-value c-turquoise">14%</span>
+        <p class="legend-desc">Description of this category. Keep it brief and clear — max two lines.</p>
+      </div>
+
+      <div class="legend-item reveal" data-color="#8F66FF" style="--delay:0.65s">
+        <span class="legend-value c-violet">10%</span>
+        <p class="legend-desc">Description of this category. Keep it brief and clear — max two lines.</p>
+      </div>
+
+      <div class="legend-item reveal" data-color="#3B72FF" style="--delay:0.75s">
+        <span class="legend-value c-blue">6%</span>
+        <p class="legend-desc">Description of this category. Keep it brief and clear — max two lines.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+(function () {
+  const svg = document.getElementById('donut-chart');
+  const cx = 378, cy = 378, R = 310, r = 185, gapDeg = 0;
+
+  const items = Array.from(document.querySelectorAll('.legend-item'));
+  const data = items.map(el => ({
+    pct: parseFloat(el.querySelector('.legend-value').textContent),
+    color: el.dataset.color
+  }));
+
+  function pt(angleDeg, radius) {
+    const rad = (angleDeg - 90) * Math.PI / 180;
+    return [cx + radius * Math.cos(rad), cy + radius * Math.sin(rad)];
+  }
+
+  function makePath(a0, a1, color) {
+    const [x1, y1] = pt(a0, R), [x2, y2] = pt(a1, R);
+    const [x3, y3] = pt(a1, r), [x4, y4] = pt(a0, r);
+    const lg = (a1 - a0) > 180 ? 1 : 0;
+    const d = `M${x1.toFixed(2)} ${y1.toFixed(2)} A${R} ${R} 0 ${lg} 1 ${x2.toFixed(2)} ${y2.toFixed(2)} L${x3.toFixed(2)} ${y3.toFixed(2)} A${r} ${r} 0 ${lg} 0 ${x4.toFixed(2)} ${y4.toFixed(2)}Z`;
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('fill', color);
+    svg.appendChild(p);
+  }
+
+  const total = data.reduce((s, d) => s + d.pct, 0);
+  const sweep = 360 - gapDeg * data.length;
+  let angle = 0;
+  data.forEach(item => {
+    const s = (item.pct / total) * sweep;
+    makePath(angle, angle + s, item.color);
+    angle += s + gapDeg;
+  });
+})();
+</script>
+<script src="../animations.js"></script>
+
+</body>
+</html>

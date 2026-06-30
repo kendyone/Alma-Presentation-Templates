@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: #1D1D1D;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #57575B;
+  }
+
+  .col-row {
+    display: flex;
+    flex-direction: row;
+    gap: 56px;
+    width: 1760px;
+    height: 350px;
+    flex-shrink: 0;
+  }
+
+  .col {
+    width: 852px;
+    height: 350px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 32px 32px 32px 0;
+    border-radius: 32px;
+  }
+
+  .col-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 48px;
+    color: #1D1D1D;
+    min-height: 96px;
+  }
+
+  .col-body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 44px;
+    color: #57575B;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_19_Text_2_Columns_Flexible
+  USE: 2–4 text blocks (2 columns × 1–2 rows). Each row maintains optical alignment between left and right cells.
+  TITLE: max 80 chars — up to 2 lines (min-height: 96px).
+  BODY: max 250 chars.
+  ROWS: Use 1 .col-row for 2 blocks, 2 .col-rows for 3–4 blocks.
+  FORBIDDEN: bullet lists, images, icons, charts, more than 4 blocks total.
+-->
+
+<section class="slide" data-layout="Layout_19_Text_2_Columns_Flexible">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Headline</p>
+  </div>
+
+  <!-- Row 1 -->
+  <div class="col-row">
+    <div class="col reveal" style="--delay:0.25s">
+      <h2 class="col-title">Find the right candidates for your company</h2>
+      <p class="col-body">Alma Career operates or cooperates with almost 30 job portals that are among the top in Europe and deliver more than 12 million responses to our clients per month.</p>
+    </div>
+    <div class="col reveal" style="--delay:0.35s">
+      <h2 class="col-title">Find the right candidates for your company</h2>
+      <p class="col-body">Alma Career operates or cooperates with almost 30 job portals that are among the top in Europe.</p>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="col-row">
+    <div class="col reveal" style="--delay:0.45s">
+      <h2 class="col-title">Find the right candidates for your company</h2>
+      <p class="col-body">Alma Career operates or cooperates with almost</p>
+    </div>
+    <div class="col reveal" style="--delay:0.55s">
+      <h2 class="col-title">Find the right candidates for your company</h2>
+      <p class="col-body">Alma Career operates or cooperates with almost 30 job portals that are among the top in Europe and deliver more than 12 million responses to our clients per month.</p>
+    </div>
+  </div>
+
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

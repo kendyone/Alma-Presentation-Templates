@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: #1D1D1D;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #57575B;
+  }
+
+  .roadmap-grid {
+    width: 1760px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+  }
+
+  .roadmap-header {
+    height: 76px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-name-cell {
+    width: 280px;
+    flex-shrink: 0;
+    height: 76px;
+  }
+
+  .header-q-cell {
+    width: 370px;
+    flex-shrink: 0;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: #57575B;
+  }
+
+  .roadmap-row {
+    height: 74px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .row-name-cell {
+    width: 280px;
+    height: 74px;
+    flex-shrink: 0;
+    padding: 20px 30px 20px 0;
+    align-self: flex-start;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: #57575B;
+  }
+
+  .task-row {
+    width: 1480px;
+    height: 66px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .q1 { width: 370px;  }
+  .q2 { width: 740px;  }
+  .q3 { width: 1110px; }
+  .q4 { width: 1480px; }
+
+  .task-cell {
+    height: 66px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    padding: 16px 30px;
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 34px;
+    color: #1D1D1D;
+  }
+
+  .empty-cell {
+    height: 66px;
+    flex-shrink: 0;
+    background: transparent;
+  }
+
+  .tc-yellow    { background: #FFCB3B; }
+  .tc-orange    { background: #FD7E40; }
+  .tc-turquoise { background: #4DD7BE; }
+  .tc-violet    { background: #8F66FF; }
+
+  .grid-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #EEE5E0;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_26_Roadmap_Single_Task_Per_Team
+  USE: Every team has exactly 1 task/topic. If any team has 2+ tasks, use Layout_25.
+  QUARTERS: 4 columns × 370px. Span classes: .q1/.q2/.q3/.q4
+  COLORS: .tc-yellow · .tc-orange · .tc-turquoise · .tc-violet (one per team)
+  RULE: spans in each .task-row must sum to .q4 (1480px total).
+  ANIMATION: .task-cell.fill-scale — animates left→right. Delay per row.
+  FORBIDDEN: more than 1 task per team, mixed single/multi task rows.
+
+  EXAMPLE task row spanning Q2–Q4:
+    <div class="task-row">
+      <div class="empty-cell q1"></div>
+      <div class="task-cell q3 tc-orange fill-scale" style="--delay:0.4s">Label</div>
+    </div>
+-->
+
+<section class="slide" data-layout="Layout_26_Roadmap_Single_Task_Per_Team">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Headline</p>
+  </div>
+
+  <div class="roadmap-grid">
+
+    <!-- Quarter header -->
+    <div class="roadmap-header reveal" style="--delay:0.2s">
+      <div class="header-name-cell"></div>
+      <div class="header-q-cell">Q1 2026</div>
+      <div class="header-q-cell">Q2 2026</div>
+      <div class="header-q-cell">Q3 2026</div>
+      <div class="header-q-cell">Q4 2026</div>
+    </div>
+
+    <!-- Team 1 — yellow, Q1–Q2 -->
+    <div class="roadmap-row reveal" style="--delay:0.3s">
+      <div class="row-name-cell">Team/Product name</div>
+      <div class="task-row">
+        <div class="task-cell q2 tc-yellow fill-scale" style="--delay:0.35s"><span class="fade" style="--delay:1.45s">Integrate components</span></div>
+        <div class="empty-cell q2"></div>
+      </div>
+    </div>
+
+    <!-- Team 2 — orange, Q2–Q4 -->
+    <div class="roadmap-row reveal" style="--delay:0.4s">
+      <div class="row-name-cell">Team/Product name</div>
+      <div class="task-row">
+        <div class="empty-cell q1"></div>
+        <div class="task-cell q3 tc-orange fill-scale" style="--delay:0.45s"><span class="fade" style="--delay:1.55s">Integrate File uploader</span></div>
+      </div>
+    </div>
+
+    <!-- Team 3 — turquoise, Q2–Q3 -->
+    <div class="roadmap-row reveal" style="--delay:0.5s">
+      <div class="row-name-cell">Team/Product name</div>
+      <div class="task-row">
+        <div class="empty-cell q1"></div>
+        <div class="task-cell q2 tc-turquoise fill-scale" style="--delay:0.55s"><span class="fade" style="--delay:1.65s">Search</span></div>
+        <div class="empty-cell q1"></div>
+      </div>
+    </div>
+
+    <!-- Team 4 — violet, Q1–Q2 -->
+    <div class="roadmap-row reveal" style="--delay:0.6s">
+      <div class="row-name-cell">Team/Product name</div>
+      <div class="task-row">
+        <div class="task-cell q2 tc-violet fill-scale" style="--delay:0.65s"><span class="fade" style="--delay:1.75s">Integrate components</span></div>
+        <div class="empty-cell q2"></div>
+      </div>
+    </div>
+
+    <div class="grid-line fade" style="left:278px; --delay:1.8s;"></div>
+    <div class="grid-line fade" style="left:649px; --delay:1.8s;"></div>
+    <div class="grid-line fade" style="left:1019px; --delay:1.8s;"></div>
+    <div class="grid-line fade" style="left:1389px; --delay:1.8s;"></div>
+
+  </div>
+
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

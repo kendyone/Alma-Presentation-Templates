@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: #1D1D1D;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #57575B;
+  }
+
+  .cards-row {
+    display: flex;
+    flex-direction: row;
+    gap: 56px;
+    width: 1760px;
+    flex: 1;
+    align-items: flex-start;
+  }
+
+  .team-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 32px;
+    background: #F0F0F0;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 44px;
+    color: #1D1D1D;
+  }
+
+  .card-role {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: #57575B;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_21_Team_Cards_Horizontal
+  USE: 2–4 people with photo as dominant visual element.
+  PERSONS: 2 → 2 cards, 3 → 3 cards, 4 → 4 cards. Cards auto-distribute width equally.
+  PHOTO: replace .photo <div> with <img class="photo" src="..." alt="...">
+  NAME: max 30 chars (1 line). ROLE: max 50 chars (up to 2 lines).
+  ALIGNMENT: all names naturally align — same photo aspect-ratio = same photo height.
+  FORBIDDEN: biographical text, bullet lists, more than 4 people.
+-->
+
+<section class="slide" data-layout="Layout_21_Team_Cards_Horizontal">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Headline</p>
+  </div>
+
+  <div class="cards-row">
+
+    <div class="team-card reveal" style="--delay:0.25s">
+      <div class="photo"></div>
+      <div class="card-info">
+        <p class="card-name">Jiří Bárta</p>
+        <p class="card-role">Lead UI Designer</p>
+      </div>
+    </div>
+
+    <div class="team-card reveal" style="--delay:0.35s">
+      <div class="photo"></div>
+      <div class="card-info">
+        <p class="card-name">Tihana Biga-Laatikainen</p>
+        <p class="card-role">Project Manager, Group Communications</p>
+      </div>
+    </div>
+
+    <div class="team-card reveal" style="--delay:0.45s">
+      <div class="photo"></div>
+      <div class="card-info">
+        <p class="card-name">Marek Vrtich</p>
+        <p class="card-role">Chapter Leader, Cyborg</p>
+      </div>
+    </div>
+
+    <div class="team-card reveal" style="--delay:0.55s">
+      <div class="photo"></div>
+      <div class="card-info">
+        <p class="card-name">Tomas Litera</p>
+        <p class="card-role">Support</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

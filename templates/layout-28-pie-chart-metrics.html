@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --color-primary-black:   #1D1D1D;
+    --color-secondary-black: #57575B;
+    --color-bg-primary:      #FFFFFF;
+  }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: var(--color-bg-primary);
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+  .slide-header .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: var(--color-primary-black);
+  }
+  .slide-header .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: var(--color-secondary-black);
+  }
+
+  .content-row {
+    display: flex;
+    flex-direction: row;
+    gap: 56px;
+    height: 756px;
+  }
+
+  .left-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    padding: 0 32px 32px 0;
+  }
+
+  .body-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 44px;
+    color: var(--color-secondary-black);
+  }
+
+  .legend {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .legend-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    height: 44px;
+  }
+
+  .legend-dot {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .legend-pct {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 44px;
+    color: var(--color-primary-black);
+    width: 76px;
+    flex-shrink: 0;
+  }
+
+  .legend-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 44px;
+    color: var(--color-primary-black);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chart-area {
+    width: 756px;
+    height: 756px;
+    flex-shrink: 0;
+  }
+
+  #pie-chart {
+    width: 756px;
+    height: 756px;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_28_Pie_Chart_Metrics
+  USE: 3–6 categories as proportional slices of a whole (% sum = 100). Chart on RIGHT, legend on LEFT.
+  VS Layout_06: full pie (no hole), legend uses dot+pct+desc in Inter 30px (not Newsreader), body text above legend.
+  FORBIDDEN: <3 or >6 items, long descriptions (max ~30 chars / 1 line), color mismatch.
+  STRUCTURE: headline + subtitle + [left: body text + legend] + [right: pie chart].
+  LEGEND ITEM: colored dot (44px) + bold % + regular short description (1 line, no wrapping).
+  COLOR ORDER: turquoise (#4DD7BE) · violet (#8F66FF) · blue (#3B72FF) · yellow (#FFCB3B) · orange (#FD7E40)
+    → Use first N colors for N categories. Set data-color on each .legend-item to match segment.
+  ANIMATION: .body-text.reveal + .legend-item.reveal staggered + .chart-area.reveal.
+-->
+
+<section class="slide" data-layout="Layout_28_Pie_Chart_Metrics">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Subtitle text goes here</p>
+  </div>
+
+  <div class="content-row">
+
+    <div class="left-col">
+
+      <p class="body-text reveal" style="--delay:0.2s">Supporting body text goes here. Keep it concise — this provides context for the chart data shown on the right side of the slide.</p>
+
+      <div class="legend">
+
+        <div class="legend-item reveal" data-color="#4DD7BE" style="--delay:0.3s">
+          <span class="legend-dot" style="background:#4DD7BE;"></span>
+          <span class="legend-pct">47%</span>
+          <span class="legend-desc">Short description</span>
+        </div>
+
+        <div class="legend-item reveal" data-color="#8F66FF" style="--delay:0.38s">
+          <span class="legend-dot" style="background:#8F66FF;"></span>
+          <span class="legend-pct">23%</span>
+          <span class="legend-desc">Short description</span>
+        </div>
+
+        <div class="legend-item reveal" data-color="#3B72FF" style="--delay:0.46s">
+          <span class="legend-dot" style="background:#3B72FF;"></span>
+          <span class="legend-pct">14%</span>
+          <span class="legend-desc">Short description</span>
+        </div>
+
+        <div class="legend-item reveal" data-color="#FFCB3B" style="--delay:0.54s">
+          <span class="legend-dot" style="background:#FFCB3B;"></span>
+          <span class="legend-pct">10%</span>
+          <span class="legend-desc">Short description</span>
+        </div>
+
+        <div class="legend-item reveal" data-color="#FD7E40" style="--delay:0.62s">
+          <span class="legend-dot" style="background:#FD7E40;"></span>
+          <span class="legend-pct">6%</span>
+          <span class="legend-desc">Short description</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="chart-area reveal" style="--delay:0.25s">
+      <svg id="pie-chart" viewBox="0 0 756 756" xmlns="http://www.w3.org/2000/svg">
+        <!-- Segments injected by init script below -->
+      </svg>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+(function () {
+  const svg = document.getElementById('pie-chart');
+  const cx = 378, cy = 378, R = 350;
+
+  const items = Array.from(document.querySelectorAll('.legend-item'));
+  const data = items.map(el => ({
+    pct: parseFloat(el.querySelector('.legend-pct').textContent),
+    color: el.dataset.color
+  }));
+
+  function pt(angleDeg) {
+    const rad = (angleDeg - 90) * Math.PI / 180;
+    return [cx + R * Math.cos(rad), cy + R * Math.sin(rad)];
+  }
+
+  function makePath(a0, a1, color) {
+    const [x1, y1] = pt(a0), [x2, y2] = pt(a1);
+    const large = (a1 - a0) > 180 ? 1 : 0;
+    const d = `M${cx} ${cy} L${x1.toFixed(2)} ${y1.toFixed(2)} A${R} ${R} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}Z`;
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('fill', color);
+    svg.appendChild(p);
+  }
+
+  const total = data.reduce((s, d) => s + d.pct, 0);
+  let angle = 0;
+  data.forEach(item => {
+    const sweep = (item.pct / total) * 360;
+    makePath(angle, angle + sweep, item.color);
+    angle += sweep;
+  });
+})();
+</script>
+<script src="../animations.js"></script>
+
+</body>
+</html>

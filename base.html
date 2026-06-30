@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── Brand tokens ── */
+  :root {
+    --color-primary-black:    #1D1D1D;
+    --color-secondary-black:  #57575B;
+    --color-bg-primary:       #FFFFFF;
+    --color-accent-yellow:    #FFCB3B;
+    --color-accent-orange:    #FD7E40;
+    --color-accent-turquoise: #4DD7BE;
+    --color-accent-violet:    #8F66FF;
+
+    --canvas-w: 1920px;
+    --canvas-h: 1080px;
+    --padding-v: 72px;
+    --padding-h: 80px;
+    --gap-header: 16px;
+    --gap-sections: 56px;
+    --gap-columns: 56px;
+  }
+
+  /* ── Stage infrastructure ── */
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #111;
+  }
+
+  #stage-wrapper {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    transform-origin: top left;
+    /* scale set by JS */
+  }
+
+  /* ── Slide base ── */
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    background: var(--color-bg-primary);
+    padding: var(--padding-v) var(--padding-h);
+    display: none;
+    flex-direction: column;
+    gap: var(--gap-sections);
+    overflow: hidden;
+  }
+
+  .slide.active {
+    display: flex;
+  }
+
+  /* ── Shared header ── */
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-header);
+    height: 124px;
+    flex-shrink: 0;
+  }
+
+  .slide-header .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: var(--color-primary-black);
+  }
+
+  .slide-header .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: var(--color-secondary-black);
+  }
+
+  /* ── Navigation UI ── */
+  #nav {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 100;
+  }
+
+  #nav-counter {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+    min-width: 48px;
+    text-align: center;
+  }
+
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .nav-dot.active {
+    background: rgba(255,255,255,0.85);
+  }
+</style>
+</head>
+<body>
+
+<div id="stage-wrapper">
+  <div id="stage">
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDES — inject <section class="slide"> blocks here
+         ═══════════════════════════════════════════════════ -->
+
+    <section class="slide active" data-layout="Layout_01_BarChart_Ascending">
+      <div class="slide-header">
+        <h1 class="headline">Headline</h1>
+        <p class="subtitle">Subtitle text goes here</p>
+      </div>
+      <div class="bar-chart" id="barChart">
+        <div class="bar-col" data-value="21">
+          <div class="bar-meta">
+            <span class="bar-value">21 %</span>
+            <p class="bar-desc">Here's a short description of the statistics.</p>
+          </div>
+          <div class="bar-block"></div>
+        </div>
+        <div class="bar-col" data-value="48">
+          <div class="bar-meta">
+            <span class="bar-value">48 %</span>
+            <p class="bar-desc">Here's a short description of the statistics.</p>
+          </div>
+          <div class="bar-block"></div>
+        </div>
+        <div class="bar-col" data-value="70">
+          <div class="bar-meta">
+            <span class="bar-value">70 %</span>
+            <p class="bar-desc">Here's a short description of the statistics.</p>
+          </div>
+          <div class="bar-block"></div>
+        </div>
+        <div class="bar-col" data-value="85">
+          <div class="bar-meta">
+            <span class="bar-value">85 %</span>
+            <p class="bar-desc">Here's a short description of the statistics.</p>
+          </div>
+          <div class="bar-block"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- add more slides here -->
+
+  </div>
+</div>
+
+<!-- Navigation dots -->
+<div id="nav">
+  <span id="nav-counter"></span>
+</div>
+
+<style>
+  /* ── Tile palette ── */
+  :root {
+    --tile-peach-bg:      #FFE5D9;
+    --tile-peach-stat:    #72371A;
+    --tile-mint-bg:       #DBF7F2;
+    --tile-mint-stat:     #1F564C;
+    --tile-lavender-bg:   #E9E0FF;
+    --tile-lavender-stat: #432989;
+  }
+
+  /* ── Layout_02 styles ── */
+  .tiles-row { display: flex; gap: var(--gap-columns); height: 756px; }
+  .tile { flex: 1; padding: 32px 40px; display: flex; flex-direction: column; gap: 40px; }
+  .tile--peach    { background: var(--tile-peach-bg); }
+  .tile--mint     { background: var(--tile-mint-bg); }
+  .tile--lavender { background: var(--tile-lavender-bg); }
+  .tile-stat { font-family: 'Newsreader', serif; font-weight: 600; font-size: 90px; line-height: 90px; }
+  .tile--peach    .tile-stat { color: var(--tile-peach-stat); }
+  .tile--mint     .tile-stat { color: var(--tile-mint-stat); }
+  .tile--lavender .tile-stat { color: var(--tile-lavender-stat); }
+  .tile-info { display: flex; flex-direction: column; gap: 16px; }
+  .tile-label { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 30px; line-height: 44px; color: var(--color-primary-black); }
+  .tile-desc  { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 24px; line-height: 34px; color: var(--color-primary-black); }
+
+  /* ── Layout_03 + Layout_04 shared grid styles ── */
+  .grid-2x2, .grid-2x3 { display: flex; flex-direction: column; gap: var(--gap-columns); height: 756px; }
+  .grid-row  { display: flex; gap: var(--gap-columns); height: 350px; }
+  .tile--empty { background: transparent; pointer-events: none; }
+
+  /* ── Layout_08 styles ── */
+  .divider-card { width: 1760px; height: 936px; background: #1D1D1D; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 32px; padding: 0 164px; }
+  .divider-card[data-theme="yellow"] { background: #FFCB3B; }
+  .divider-card[data-theme="yellow"] .divider-eyebrow, .divider-card[data-theme="yellow"] .divider-headline { color: #1D1D1D; }
+  .divider-card[data-theme="yellow"] .divider-body { color: #57575B; }
+  .divider-card[data-theme="violet"] { background: #8F66FF; }
+  .divider-card[data-theme="violet"] .divider-eyebrow, .divider-card[data-theme="violet"] .divider-body { color: rgba(255,255,255,0.7); }
+  .divider-card[data-theme="violet"] .divider-headline { color: #FFFFFF; }
+  .divider-eyebrow { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 32px; line-height: 44px; color: #FFFFFF; }
+  .divider-headline { font-family: 'Newsreader', serif; font-weight: 600; font-size: 90px; line-height: 98px; color: #FFFFFF; max-width: 1000px; }
+  .divider-body { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 32px; line-height: 44px; color: #A1A1A1; max-width: 1000px; }
+
+  /* ── Layout_07 styles ── */
+  .dark-card { width: 1760px; height: 936px; background: #1D1D1D; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+  .profile-photo { width: 150px; height: 150px; object-fit: cover; background: #333; flex-shrink: 0; }
+  .quote-text { width: 1300px; font-family: 'Newsreader', serif; font-weight: 600; color: #FFFFFF; text-align: center; }
+  .quote-author { width: 1300px; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 32px; line-height: 44px; color: #A1A1A1; text-align: center; }
+
+  /* ── Layout_06 styles ── */
+  :root {
+    --bar-track-orange: #FFE5D9; --bar-fill-orange: #FD7E40;
+    --variance-positive: #2E8172; --variance-negative: #A02626;
+  }
+  .progress-variance { flex: 0 0 183px; font-family: 'Newsreader', serif; font-weight: 600; font-size: 56px; line-height: 56px; text-align: right; }
+  .progress-variance.positive { color: var(--variance-positive); }
+  .progress-variance.negative { color: var(--variance-negative); }
+
+  /* ── Layout_05 styles ── */
+  :root { --bar-track: #E9E0FF; --bar-fill: #8F66FF; }
+  .progress-rows { display: flex; flex-direction: column; }
+  .progress-row { display: flex; align-items: flex-end; gap: 64px; padding: 24px 0; height: 152px; }
+  .progress-left { flex: 0 0 1516px; display: flex; flex-direction: column; gap: 20px; }
+  .progress-label { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 30px; line-height: 44px; color: var(--color-primary-black); }
+  .progress-track { width: 100%; height: 40px; background: var(--bar-track); overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--bar-fill); }
+  .progress-value { flex: 0 0 180px; font-family: 'Newsreader', serif; font-weight: 600; font-size: 56px; line-height: 56px; color: var(--color-primary-black); text-align: right; }
+
+  /* ── Layout_01 styles ── */
+  .bar-chart {
+    display: flex;
+    gap: var(--gap-columns);
+    height: 756px;
+    align-items: flex-end;
+  }
+  .bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 40px;
+    height: 756px;
+  }
+  .bar-meta { display: flex; flex-direction: column; gap: 20px; }
+  .bar-value {
+    display: block;
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 90px;
+    line-height: 90px;
+    color: var(--color-primary-black);
+  }
+  .bar-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 44px;
+    color: var(--color-secondary-black);
+  }
+  .bar-block {
+    width: 100%;
+    background: var(--color-accent-orange);
+    flex-shrink: 0;
+  }
+</style>
+
+<script>
+  /* ── Scale ── */
+  const stage = document.getElementById('stage');
+
+  function scaleStage() {
+    const sx = window.innerWidth  / 1920;
+    const sy = window.innerHeight / 1080;
+    const s  = Math.min(sx, sy);
+    stage.style.transform = `scale(${s})`;
+    stage.style.left = Math.round((window.innerWidth  - 1920 * s) / 2) + 'px';
+    stage.style.top  = Math.round((window.innerHeight - 1080 * s) / 2) + 'px';
+  }
+
+  window.addEventListener('resize', scaleStage);
+  scaleStage();
+
+  /* ── Navigation ── */
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const navEl   = document.getElementById('nav');
+  const counter = document.getElementById('nav-counter');
+  let current = 0;
+
+  function buildDots() {
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      navEl.appendChild(d);
+    });
+    updateCounter();
+  }
+
+  function updateCounter() {
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    document.querySelectorAll('.nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, slides.length - 1));
+    slides[current].classList.add('active');
+    initSlide(slides[current]);
+    updateCounter();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ')  goTo(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                     goTo(current - 1);
+  });
+
+  /* ── Per-slide init (bars, charts, etc.) ── */
+  function initSlide(slide) {
+    const layout = slide.dataset.layout;
+    if (layout === 'Layout_01_BarChart_Ascending') initBarChart(slide);
+  }
+
+  function initBarChart(slide) {
+    const MAX = 480;
+    const cols = Array.from(slide.querySelectorAll('.bar-col'));
+    const vals = cols.map(c => parseFloat(c.dataset.value));
+    const max  = Math.max(...vals);
+    cols.forEach((col, i) => {
+      col.querySelector('.bar-block').style.height =
+        Math.round((vals[i] / max) * MAX) + 'px';
+    });
+  }
+
+  /* ── Boot ── */
+  buildDots();
+  initSlide(slides[0]);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --color-bg-primary: #FFFFFF;
+  }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: var(--color-bg-primary);
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .divider-card {
+    width: 1760px;
+    height: 936px;
+    background: #1D1D1D;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 0 164px;
+  }
+
+  .divider-card[data-theme="yellow"] { background: #FFCB3B; }
+  .divider-card[data-theme="yellow"] .divider-eyebrow  { color: #1D1D1D; }
+  .divider-card[data-theme="yellow"] .divider-headline { color: #1D1D1D; }
+  .divider-card[data-theme="yellow"] .divider-body     { color: #57575B; }
+
+  .divider-card[data-theme="violet"] { background: #8F66FF; }
+  .divider-card[data-theme="violet"] .divider-eyebrow  { color: rgba(255,255,255,0.7); }
+  .divider-card[data-theme="violet"] .divider-headline { color: #FFFFFF; }
+  .divider-card[data-theme="violet"] .divider-body     { color: rgba(255,255,255,0.7); }
+
+  .divider-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #FFFFFF;
+  }
+
+  .divider-headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 90px;
+    line-height: 98px;
+    color: #FFFFFF;
+    max-width: 1000px;
+  }
+
+  .divider-body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #A1A1A1;
+    max-width: 1000px;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_08_Section_Divider
+  USE: Chapter/section transition, brand promise, strong standalone claim.
+  THEME: set data-theme on .divider-card — "dark" (default), "yellow", "violet"
+  EYEBROW: remove <p class="divider-eyebrow"> if not needed.
+  BODY: remove <p class="divider-body"> if not needed.
+  FORBIDDEN: lists, tiles, icons, photos, body >250 chars.
+-->
+
+<section class="slide" data-layout="Layout_08_Section_Divider">
+  <div class="divider-card" data-theme="dark">
+
+    <!-- Optional: remove if no eyebrow -->
+    <p class="divider-eyebrow reveal" style="--delay:0.1s">Our brand promise</p>
+
+    <h2 class="divider-headline reveal" style="--delay:0.2s">Find the right candidates for your company.</h2>
+
+    <!-- Optional: remove if no body text -->
+    <p class="divider-body reveal" style="--delay:0.35s">Alma Career operates or cooperates with almost 30 job portals that are among the top in Europe and deliver more than 12 million responses to our clients per month.</p>
+
+  </div>
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

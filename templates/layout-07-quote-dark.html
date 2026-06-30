@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --color-bg-primary: #FFFFFF;
+    --card-bg:          #1D1D1D;
+    --quote-color:      #FFFFFF;
+    --author-color:     #A1A1A1;
+  }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: var(--color-bg-primary);
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .dark-card {
+    width: 1760px;
+    height: 936px;
+    background: var(--card-bg);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .profile-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    background: #333;
+    flex-shrink: 0;
+  }
+
+  .quote-text {
+    width: 1300px;
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    line-height: 64px;
+    color: var(--quote-color);
+    text-align: center;
+    /* font-size set by JS based on character count */
+  }
+
+  .quote-author {
+    width: 1300px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: var(--author-color);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_07_Quote_Dark
+  USE: A single quote, testimonial, or strong standalone claim.
+  PROFILE PHOTO: remove <div class="profile-photo"> entirely if not available.
+  AUTHOR: remove <p class="quote-author"> if not available.
+  FONT SIZE: set automatically by JS based on character count.
+  FORBIDDEN: lists, charts, metrics, multiple text blocks, text >450 chars.
+-->
+
+<section class="slide" data-layout="Layout_07_Quote_Dark">
+  <div class="dark-card">
+
+    <!-- Optional: remove if no photo -->
+    <div class="profile-photo reveal" style="--delay:0.1s"></div>
+
+    <p class="quote-text reveal" style="--delay:0.2s">
+      "I've always appreciated his combination of a strong sense of visual quality, systematic thinking, and reliability. Jirka truly understands design systems – not just as a set of components, but as a way to keep the product consistent, scalable, and high-quality across the platform."
+    </p>
+
+    <!-- Optional: remove if no author -->
+    <p class="quote-author reveal" style="--delay:0.4s">Jiri Vahala, Lead UX Designer</p>
+
+  </div>
+</section>
+
+<script>
+  const quote = document.querySelector('.quote-text');
+  const len = quote.textContent.trim().length;
+
+  let fontSize, lineHeight;
+  if      (len <= 80)  { fontSize = 90; lineHeight = 98; }
+  else if (len <= 150) { fontSize = 72; lineHeight = 82; }
+  else if (len <= 250) { fontSize = 64; lineHeight = 74; }
+  else                 { fontSize = 54; lineHeight = 64; }
+
+  quote.style.fontSize   = fontSize   + 'px';
+  quote.style.lineHeight = lineHeight + 'px';
+</script>
+<script src="../animations.js"></script>
+
+</body>
+</html>

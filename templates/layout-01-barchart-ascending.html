@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --color-primary-black:    #1D1D1D;
+    --color-secondary-black:  #57575B;
+    --color-bg-primary:       #FFFFFF;
+    --color-accent-orange:    #FD7E40;
+  }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: var(--color-bg-primary);
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+
+  .slide-header .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: var(--color-primary-black);
+  }
+
+  .slide-header .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: var(--color-secondary-black);
+  }
+
+  .bar-chart {
+    display: flex;
+    flex-direction: row;
+    gap: 56px;
+    height: 756px;
+    flex: 1;
+    align-items: flex-end;
+  }
+
+  .bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 40px;
+    height: 756px;
+  }
+
+  .bar-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .bar-value {
+    display: block;
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 90px;
+    line-height: 90px;
+    color: var(--color-primary-black);
+  }
+
+  .bar-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 44px;
+    color: var(--color-secondary-black);
+  }
+
+  .bar-block {
+    width: 100%;
+    background: var(--color-accent-orange);
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_01_BarChart_Ascending
+  USE: 2–4 percentage data points for comparison/distribution.
+  FORBIDDEN: currencies, absolute numbers, time units, non-percentage values.
+  DATA: set data-value="[0-100]" on each .bar-col
+  ANIMATION: .bar-value.count-up — data-target=number, data-suffix=" %"
+-->
+
+<section class="slide" data-layout="Layout_01_BarChart_Ascending">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Subtitle text goes here</p>
+  </div>
+
+  <div class="bar-chart" id="barChart">
+
+    <div class="bar-col" data-value="21">
+      <div class="bar-meta reveal" style="--delay:0.2s">
+        <span class="bar-value count-up" data-target="21" data-suffix=" %">21 %</span>
+        <p class="bar-desc">Here's a short description of the statistics.</p>
+      </div>
+      <div class="bar-block bar-scale" style="--delay:0.2s"></div>
+    </div>
+
+    <div class="bar-col" data-value="48">
+      <div class="bar-meta reveal" style="--delay:0.3s">
+        <span class="bar-value count-up" data-target="48" data-suffix=" %">48 %</span>
+        <p class="bar-desc">Here's a short description of the statistics.</p>
+      </div>
+      <div class="bar-block bar-scale" style="--delay:0.3s"></div>
+    </div>
+
+    <div class="bar-col" data-value="70">
+      <div class="bar-meta reveal" style="--delay:0.4s">
+        <span class="bar-value count-up" data-target="70" data-suffix=" %">70 %</span>
+        <p class="bar-desc">Here's a short description of the statistics.</p>
+      </div>
+      <div class="bar-block bar-scale" style="--delay:0.4s"></div>
+    </div>
+
+    <div class="bar-col" data-value="85">
+      <div class="bar-meta reveal" style="--delay:0.5s">
+        <span class="bar-value count-up" data-target="85" data-suffix=" %">85 %</span>
+        <p class="bar-desc">Here's a short description of the statistics.</p>
+      </div>
+      <div class="bar-block bar-scale" style="--delay:0.5s"></div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const MAX_BAR_HEIGHT = 480;
+  const cols = Array.from(document.querySelectorAll('.bar-col'));
+  const values = cols.map(c => parseFloat(c.dataset.value));
+  const maxVal = Math.max(...values);
+  cols.forEach((col, i) => {
+    const h = Math.round((values[i] / maxVal) * MAX_BAR_HEIGHT);
+    col.querySelector('.bar-block').style.height = h + 'px';
+  });
+</script>
+<script src="../animations.js"></script>
+
+</body>
+</html>

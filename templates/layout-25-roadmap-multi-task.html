@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: #1D1D1D;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #57575B;
+  }
+
+  .roadmap-grid {
+    width: 1760px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+
+  .roadmap-header {
+    height: 76px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-name-cell {
+    width: 280px;
+    flex-shrink: 0;
+    height: 76px;
+  }
+
+  .header-q-cell {
+    width: 370px;
+    flex-shrink: 0;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: #57575B;
+  }
+
+  .roadmap-row {
+    height: 142px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .row-name-cell {
+    width: 280px;
+    flex-shrink: 0;
+    height: 142px;
+    padding: 20px 30px 20px 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: #57575B;
+  }
+
+  .row-tasks {
+    width: 1480px;
+    height: 142px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .task-sub-row {
+    height: 66px;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+  }
+
+  .q1 { width: 370px;  }
+  .q2 { width: 740px;  }
+  .q3 { width: 1110px; }
+  .q4 { width: 1480px; }
+
+  .task-cell {
+    height: 66px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    padding: 16px 30px;
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 34px;
+    color: #1D1D1D;
+  }
+
+  .empty-cell {
+    height: 66px;
+    flex-shrink: 0;
+    background: transparent;
+  }
+
+  .tc-yellow    { background: #FFCB3B; }
+  .tc-orange    { background: #FD7E40; }
+  .tc-turquoise { background: #4DD7BE; }
+  .tc-violet    { background: #8F66FF; }
+
+  .grid-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #EEE5E0;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_25_Roadmap_Multi_Task_Per_Team
+  USE: Teams with 2+ tasks spanning different quarters. For single-task use Layout_26.
+  QUARTERS: 4 columns × 370px. Use .q1/.q2/.q3/.q4 for 1–4 quarter spans.
+  COLORS: .tc-yellow · .tc-orange · .tc-turquoise · .tc-violet (one per team)
+  ROWS: max 4 teams.
+  STRUCTURE per team:
+    <div class="task-sub-row">         ← task 1 (e.g. Q1–Q2)
+      <div class="task-cell q2 tc-yellow">Label</div>   ← Q1–Q2 task
+      <div class="empty-cell q2"></div>                 ← Q3–Q4 empty
+    </div>
+    <div class="task-sub-row">         ← task 2 (e.g. Q2–Q3)
+      <div class="empty-cell q1"></div>
+      <div class="task-cell q2 tc-yellow">Label</div>
+      <div class="empty-cell q1"></div>
+    </div>
+  ANIMATION: .task-cell.fill-scale — animates left→right. Delay per row.
+  FORBIDDEN: hardcoded spans not matching real data, images, bullet lists.
+-->
+
+<section class="slide" data-layout="Layout_25_Roadmap_Multi_Task_Per_Team">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Headline</p>
+  </div>
+
+  <div class="roadmap-grid">
+
+    <!-- Quarter header -->
+    <div class="roadmap-header reveal" style="--delay:0.2s">
+      <div class="header-name-cell"></div>
+      <div class="header-q-cell">Q1 2026</div>
+      <div class="header-q-cell">Q2 2026</div>
+      <div class="header-q-cell">Q3 2026</div>
+      <div class="header-q-cell">Q4 2026</div>
+    </div>
+
+    <!-- Team 1 — yellow, tasks: Q1–Q2 + Q2–Q3 -->
+    <div class="roadmap-row reveal" style="--delay:0.3s">
+      <div class="row-name-cell">Team/Product name</div>
+      <div class="row-tasks">
+        <div class="task-sub-row">
+          <div class="task-cell q2 tc-yellow fill-scale" style="--delay:0.35s"><span class="fade" style="--delay:1.45s">Integrate components</span></div>
+          <div class="empty-cell q2"></div>
+        </div>
+        <div class="task-sub-row">
+          <div class="empty-cell q1"></div>
+          <div class="task-cell q2 tc-yellow fill-scale" style="--delay:0.45s"><span class="fade" style="--delay:1.55s">Integrate components</span></div>
+          <div class="empty-cell q1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team 2 — orange, tasks: Q1 + Q2–Q4 -->
+    <div class="roadmap-row reveal" style="--delay:0.4s">
+      <div class="row-name-cell">Team/Product name</div>
+      <div class="row-tasks">
+        <div class="task-sub-row">
+          <div class="task-cell q1 tc-orange fill-scale" style="--delay:0.45s"><span class="fade" style="--delay:1.55s">Discovery</span></div>
+          <div class="empty-cell q3"></div>
+        </div>
+        <div class="task-sub-row">
+          <div class="empty-cell q1"></div>
+          <div class="task-cell q3 tc-orange fill-scale" style="--delay:0.55s"><span class="fade" style="--delay:1.65s">Integrate File uploader</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team 3 — turquoise, tasks: Q1–Q2 + Q2–Q3 -->
+    <div class="roadmap-row reveal" style="--delay:0.5s">
+      <div class="row-name-cell">Team/Product name</div>
+      <div class="row-tasks">
+        <div class="task-sub-row">
+          <div class="task-cell q2 tc-turquoise fill-scale" style="--delay:0.55s"><span class="fade" style="--delay:1.65s">Integrate components</span></div>
+          <div class="empty-cell q2"></div>
+        </div>
+        <div class="task-sub-row">
+          <div class="empty-cell q1"></div>
+          <div class="task-cell q2 tc-turquoise fill-scale" style="--delay:0.65s"><span class="fade" style="--delay:1.75s">Search</span></div>
+          <div class="empty-cell q1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team 4 — violet, tasks: Q1–Q2 + Q2–Q3 -->
+    <div class="roadmap-row reveal" style="--delay:0.6s">
+      <div class="row-name-cell">Team/Product name</div>
+      <div class="row-tasks">
+        <div class="task-sub-row">
+          <div class="task-cell q2 tc-violet fill-scale" style="--delay:0.65s"><span class="fade" style="--delay:1.75s">Integrate components</span></div>
+          <div class="empty-cell q2"></div>
+        </div>
+        <div class="task-sub-row">
+          <div class="empty-cell q1"></div>
+          <div class="task-cell q2 tc-violet fill-scale" style="--delay:0.75s"><span class="fade" style="--delay:1.85s">User testing</span></div>
+          <div class="empty-cell q1"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-line fade" style="left:278px; --delay:1.9s;"></div>
+    <div class="grid-line fade" style="left:649px; --delay:1.9s;"></div>
+    <div class="grid-line fade" style="left:1019px; --delay:1.9s;"></div>
+    <div class="grid-line fade" style="left:1389px; --delay:1.9s;"></div>
+
+  </div>
+
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>

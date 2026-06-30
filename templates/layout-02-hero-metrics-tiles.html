@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --color-primary-black:   #1D1D1D;
+    --color-secondary-black: #57575B;
+    --color-bg-primary:      #FFFFFF;
+    --tile-peach-bg:      #FFE5D9;
+    --tile-peach-stat:    #72371A;
+    --tile-mint-bg:       #DBF7F2;
+    --tile-mint-stat:     #1F564C;
+    --tile-lavender-bg:   #E9E0FF;
+    --tile-lavender-stat: #432989;
+  }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: var(--color-bg-primary);
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 124px;
+    flex-shrink: 0;
+  }
+  .slide-header .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: var(--color-primary-black);
+  }
+  .slide-header .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: var(--color-secondary-black);
+  }
+
+  .tiles-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-rows: 1fr auto auto 1fr;
+    column-gap: 56px;
+    height: 756px;
+  }
+
+  .tile {
+    grid-row: 1 / -1;
+    padding: 32px 40px;
+    display: grid;
+    grid-template-rows: subgrid;
+  }
+
+  .tile--peach    { background: var(--tile-peach-bg); }
+  .tile--mint     { background: var(--tile-mint-bg); }
+  .tile--lavender { background: var(--tile-lavender-bg); }
+
+  .tile-stat {
+    grid-row: 2;
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 90px;
+    line-height: 90px;
+  }
+
+  .tile--peach    .tile-stat { color: var(--tile-peach-stat); }
+  .tile--mint     .tile-stat { color: var(--tile-mint-stat); }
+  .tile--lavender .tile-stat { color: var(--tile-lavender-stat); }
+
+  .tile-info {
+    grid-row: 3;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tile-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 44px;
+    color: var(--color-primary-black);
+  }
+
+  .tile-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: var(--color-primary-black);
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_02_HeroMetrics_Tiles
+  USE: 2–3 semantically different key metrics shown as highlight tiles.
+  TILE COLORS: 2 tiles → mint + lavender | 3 tiles → peach + mint + lavender
+  FORBIDDEN: words in main value, long paragraphs, time series of same metric, 4+ metrics.
+  ANIMATION: .tile reveal (fade in) — no count-up on tiles
+-->
+
+<section class="slide" data-layout="Layout_02_HeroMetrics_Tiles">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Headline</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Subtitle text goes here</p>
+  </div>
+
+  <!-- 3-tile variant (default). Remove first tile for 2-tile. -->
+  <div class="tiles-row">
+
+    <div class="tile tile--peach reveal" style="--delay:0.25s">
+      <span class="tile-stat">21 000 €</span>
+      <div class="tile-info">
+        <p class="tile-label">Tile headline</p>
+        <p class="tile-desc">Here's a short description of the metric. Keep it brief and clear.</p>
+      </div>
+    </div>
+
+    <div class="tile tile--mint reveal" style="--delay:0.35s">
+      <span class="tile-stat">21 %</span>
+      <div class="tile-info">
+        <p class="tile-label">Tile headline</p>
+        <p class="tile-desc">Here's a short description of the metric. Keep it brief and clear.</p>
+      </div>
+    </div>
+
+    <div class="tile tile--lavender reveal" style="--delay:0.45s">
+      <span class="tile-stat">600+</span>
+      <div class="tile-info">
+        <p class="tile-label">Tile headline</p>
+        <p class="tile-desc">Here's a short description of the metric. Keep it brief and clear.</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>
