@@ -41,8 +41,12 @@
 
   .speakers-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .speakers-grid:has(.speaker-card:nth-child(3)) {
+    grid-template-columns: 1fr 1fr;
   }
 
   .speaker-card {

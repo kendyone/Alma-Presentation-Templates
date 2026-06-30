@@ -49,11 +49,15 @@
     --rgap: 56px;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     column-gap: 56px;
     row-gap: var(--rgap);
     width: 1760px;
     align-content: start;
+  }
+
+  .persons-grid:has(.person-card:nth-child(3)) {
+    grid-template-columns: 1fr 1fr;
   }
 
   .person-card {

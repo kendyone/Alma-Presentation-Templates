@@ -62,9 +62,13 @@
 
   .intro-speakers {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 32px;
     width: 1432px;
+  }
+
+  .intro-speakers:has(.speaker:nth-child(3)) {
+    grid-template-columns: 1fr 1fr;
   }
 
   .speaker {
