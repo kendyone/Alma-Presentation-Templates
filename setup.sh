@@ -13,12 +13,8 @@ if [ ! -f "$SOURCE_FILE" ]; then
 fi
 
 mkdir -p "$TARGET_DIR"
-cp "$SOURCE_FILE" "$TARGET_FILE"
+sed "s|\[FOLDER\]|$REPO_PATH|g" "$SOURCE_FILE" > "$TARGET_FILE"
 
 echo ""
-echo ""
 echo "Done! /present is now available in any Claude Code conversation."
-echo ""
-echo "IMPORTANT — copy this path, Claude will ask for it when you run /present:"
-echo "$REPO_PATH"
 echo ""

@@ -61,11 +61,10 @@ Claude will ask you a few questions and generate your presentation.
 
 Type `/present` in Claude Code to start. Claude will guide you through a short onboarding:
 
-1. **Folder path** — where you saved the Alma Presentation Templates folder
-2. **Title** — what the presentation will be called
-3. **Topic** — what it's about (the more context, the better)
-4. **Presenters** — names and job titles
-5. **Images** — whether you'll include photos or logos
+1. **Title** — what the presentation will be called
+2. **Topic** — what it's about (the more context, the better)
+3. **Presenters** — names and job titles
+4. **Images** — whether you'll include photos or logos
 
 After onboarding, Claude proposes a slide structure for your approval, then generates a single self-contained HTML file. It will tell you exactly where to find it and how to open it.
 

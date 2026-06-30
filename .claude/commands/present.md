@@ -2,14 +2,11 @@
 
 Your task is to generate a self-contained HTML presentation in the Alma Career design system style.
 
+The templates folder is located at: **[FOLDER]**
+
 Work through three phases in order: **onboarding → content → generation**. Never skip phases.
 
-**Before asking anything**, ask the user for the folder path:
-> Where is your **Alma Presentation Templates** folder located? Please paste the full path (e.g. `C:/Users/yourname/Desktop/Alma Presentation Templates` on Windows, or `/Users/yourname/Desktop/Alma Presentation Templates` on Mac).
-
-Wait for the answer. Store it as **[FOLDER]** — use it for all file paths in this session.
-
-Then tell the user:
+Tell the user:
 > You can browse all available slide layouts by opening **[FOLDER]/showcase.html** directly in your browser. It shows live previews of all templates, so you can point me to specific ones if you like.
 
 ---

@@ -15,12 +15,11 @@ if (-not (Test-Path $TargetDir)) {
     New-Item -ItemType Directory -Force $TargetDir | Out-Null
 }
 
-Copy-Item $SourceFile $TargetFile -Force
+$RepoPathForward = $RepoPath.Replace('\', '/')
+$content = Get-Content $SourceFile -Raw -Encoding UTF8
+$content = $content -replace '\[FOLDER\]', $RepoPathForward
+$content | Out-File -FilePath $TargetFile -Encoding UTF8
 
 Write-Host ""
-Write-Host ""
 Write-Host "Done! /present is now available in any Claude Code conversation." -ForegroundColor Green
-Write-Host ""
-Write-Host "IMPORTANT — copy this path, Claude will ask for it when you run /present:" -ForegroundColor Yellow
-Write-Host "$RepoPath" -ForegroundColor Cyan
 Write-Host ""
