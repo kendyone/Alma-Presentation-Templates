@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../animations.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+    color: #1D1D1D;
+  }
+
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #57575B;
+  }
+
+  /* Two-column grid — pairs of items share the same row for horizontal alignment */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 56px;
+    row-gap: 32px;
+    align-items: start;
+    flex: 1;
+  }
+
+  .q-header {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 56px;
+    color: #1D1D1D;
+    border-radius: 16px;
+    padding: 16px 30px;
+  }
+
+  .q-header--yellow { background: #FFCB3B; }
+  .q-header--orange { background: #FD7E40; }
+  .q-header--violet { background: #8F66FF; }
+  .q-header--turquoise { background: #4DD7BE; }
+
+  .topic {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-right: 32px;
+  }
+
+  .topic-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 44px;
+    color: #1D1D1D;
+  }
+
+  .topic-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 44px;
+    color: #1D1D1D;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  LAYOUT: Layout_29_Quarterly_Detail_Notes
+  USE: Detailed activity breakdown for exactly 2 time periods (typically Q1+Q2). When content is too rich for a Roadmap layout.
+  PERIODS: 4–5 topics per column max. Description max ~150 chars (~2–3 lines).
+  COLORS: q-header--yellow (Q1 default), q-header--orange (Q2 default), q-header--violet, q-header--turquoise.
+  ALIGNMENT: HTML is interleaved (Q1 header + Q2 header, then topic pairs row by row) — CSS grid keeps matching topics at the same height automatically. Do NOT restructure into two separate column divs.
+  FORBIDDEN: bullet points, images/charts inside columns, asymmetric header heights, more than 2 periods.
+-->
+
+<section class="slide" data-layout="Layout_29_Quarterly_Detail_Notes">
+
+  <div class="slide-header">
+    <h1 class="headline reveal" style="--delay:0.05s">Roadmap 2025</h1>
+    <p class="subtitle reveal" style="--delay:0.15s">Key initiatives and deliverables by quarter</p>
+  </div>
+
+  <div class="content-grid">
+
+    <!-- Row 1: Period headers -->
+    <div class="q-header q-header--yellow reveal" style="--delay:0.2s">Q1</div>
+    <div class="q-header q-header--orange reveal" style="--delay:0.2s">Q2</div>
+
+    <!-- Row 2 -->
+    <div class="topic reveal" style="--delay:0.3s">
+      <p class="topic-title">Design system audit</p>
+      <p class="topic-desc">Review all existing components, identify gaps and inconsistencies across the product.</p>
+    </div>
+    <div class="topic reveal" style="--delay:0.3s">
+      <p class="topic-title">New onboarding flow</p>
+      <p class="topic-desc">Redesign the first-run experience to reduce drop-off and improve activation rate.</p>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="topic reveal" style="--delay:0.38s">
+      <p class="topic-title">Mobile navigation overhaul</p>
+      <p class="topic-desc">Simplify bottom navigation and consolidate settings into a single hub.</p>
+    </div>
+    <div class="topic reveal" style="--delay:0.38s">
+      <p class="topic-title">Search experience</p>
+      <p class="topic-desc">Introduce filters, saved searches, and AI-powered suggestions for job seekers.</p>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="topic reveal" style="--delay:0.46s">
+      <p class="topic-title">Accessibility baseline</p>
+      <p class="topic-desc">Reach WCAG 2.1 AA compliance across all core screens.</p>
+    </div>
+    <div class="topic reveal" style="--delay:0.46s">
+      <p class="topic-title">Performance optimisation</p>
+      <p class="topic-desc">Cut Time-to-Interactive by 30 % on listing and detail pages.</p>
+    </div>
+
+    <!-- Row 5 -->
+    <div class="topic reveal" style="--delay:0.54s">
+      <p class="topic-title">Employer dashboard v2</p>
+    </div>
+    <div class="topic reveal" style="--delay:0.54s">
+      <p class="topic-title">Analytics & reporting</p>
+      <p class="topic-desc">Launch a self-serve reporting module with exportable charts for enterprise clients.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="../animations.js"></script>
+
+</body>
+</html>
