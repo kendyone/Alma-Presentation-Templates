@@ -13,20 +13,11 @@ if [ ! -f "$SOURCE_FILE" ]; then
 fi
 
 mkdir -p "$TARGET_DIR"
-
-# Replace relative paths with absolute paths pointing to this repo
-sed \
-  -e "s|Read \`SPEC\.md\`|Read \`$REPO_PATH/SPEC.md\`|g" \
-  -e "s|from \`templates/\`|from \`$REPO_PATH/templates/\`|g" \
-  -e "s|Save as \`output/|Save as \`$REPO_PATH/output/|g" \
-  -e "s|the \`images/\` folder|the \`$REPO_PATH/images/\` folder|g" \
-  -e "s|\.\./images/|$REPO_PATH/images/|g" \
-  "$SOURCE_FILE" > "$TARGET_FILE"
+cp "$SOURCE_FILE" "$TARGET_FILE"
 
 echo ""
 echo "Done! /present is now available in any Claude Code conversation."
 echo ""
-echo "To browse slide templates, run:"
-echo "  npx serve -p 4200 \"$REPO_PATH\""
-echo "Then open: http://localhost:4200/showcase.html"
+echo "When you run /present, Claude will ask for the folder path automatically."
+echo "Your folder is at: $REPO_PATH"
 echo ""

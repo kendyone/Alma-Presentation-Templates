@@ -15,22 +15,11 @@ if (-not (Test-Path $TargetDir)) {
     New-Item -ItemType Directory -Force $TargetDir | Out-Null
 }
 
-# Replace relative paths with absolute paths pointing to this repo
-$content = Get-Content $SourceFile -Raw -Encoding UTF8
-$RepoPathForward = $RepoPath.Replace('\', '/')
-$content = $content -replace 'Read `SPEC\.md`', "Read ``$RepoPathForward/SPEC.md``"
-$content = $content -replace 'from `templates/`', "from ``$RepoPathForward/templates/``"
-$content = $content -replace 'Save as `output/', "Save as ``$RepoPathForward/output/"
-$content = $content -replace 'the `images/` folder', "the ``$RepoPathForward/images/`` folder"
-$content = $content -replace '`localhost:4200/showcase\.html`', "``localhost:4200/showcase.html`` (run: npx serve -p 4200 \`"$RepoPathForward\`")"
-$content = $content -replace '\.\./images/', "$RepoPathForward/images/"
-
-$content | Out-File -FilePath $TargetFile -Encoding UTF8
+Copy-Item $SourceFile $TargetFile -Force
 
 Write-Host ""
 Write-Host "Done! /present is now available in any Claude Code conversation." -ForegroundColor Green
 Write-Host ""
-Write-Host "To browse slide templates, run this in your terminal:"
-Write-Host "  npx serve -p 4200 `"$RepoPath`"" -ForegroundColor Cyan
-Write-Host "Then open: http://localhost:4200/showcase.html"
+Write-Host "When you run /present, Claude will ask for the folder path automatically." -ForegroundColor Cyan
+Write-Host "Your folder is at: $RepoPath"
 Write-Host ""
