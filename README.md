@@ -12,21 +12,25 @@ Generate branded HTML presentations in the Alma Career design system — just de
 
 ## Installation
 
-**Option A — Git (recommended)**
+**Option A — Git**
 
+Windows (PowerShell):
 ```
 git clone https://github.com/kendyone/Alma-Presentation-Templates.git
 cd Alma-Presentation-Templates
+.\setup.ps1
+```
+
+Mac / Linux:
+```
+git clone https://github.com/kendyone/Alma-Presentation-Templates.git
+cd Alma-Presentation-Templates
+bash setup.sh
 ```
 
 **Option B — Download ZIP**
 
-Click the green **Code** button on GitHub → **Download ZIP** → unzip the folder anywhere on your computer. Then open a terminal and `cd` into the unzipped folder.
-
-**Then run the setup script once** — it installs `/present` globally so it works in any Claude Code conversation:
-
-- Windows: `.\setup.ps1`
-- Mac / Linux: `bash setup.sh`
+Click the green **Code** button on GitHub → **Download ZIP** → unzip the folder anywhere on your computer. Then open a terminal, `cd` into the unzipped folder, and run the setup script above.
 
 That's it. You can now open any Claude Code conversation and type `/present`.
 
