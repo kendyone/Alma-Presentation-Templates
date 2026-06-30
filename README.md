@@ -53,6 +53,8 @@ Open Claude Code, start a new conversation, and type `/present`.
 
 Claude will ask you a few questions and generate your presentation.
 
+> **Not working?** If Claude says it doesn't recognize `/present`, restart Claude Code and try again.
+
 ---
 
 ## Usage
