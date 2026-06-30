@@ -22,11 +22,12 @@ git clone https://github.com/kendyone/Alma-Presentation-Templates.git
 
 Click the green **Code** button on GitHub → **Download ZIP** → unzip the folder anywhere on your computer.
 
-Then open the folder in Claude Code:
-- Desktop app: **File → Open Folder** → select the cloned/unzipped folder
-- CLI: `cd Alma-Presentation-Templates && claude`
+**Then run the setup script once** — it installs `/present` globally so it works in any Claude Code conversation:
 
-The `/present` command is available immediately after opening.
+- Windows: double-click `setup.ps1`, or run in terminal: `.\setup.ps1`
+- Mac / Linux: run in terminal: `bash setup.sh`
+
+That's it. You can now open any Claude Code conversation and type `/present`.
 
 ---
 
