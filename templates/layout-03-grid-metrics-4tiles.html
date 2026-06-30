@@ -69,7 +69,6 @@
     padding: 32px 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 40px;
     border-radius: 24px;
   }
@@ -112,6 +111,7 @@
   USE: Exactly 4 related but different metrics in a 2×2 grid.
   COLOR: All tiles uniform lavender — no color variation.
   FORBIDDEN: words in main value, long text, bullet lists, ≠4 data points.
+  ALIGNMENT: .tile uses flex-direction:column + gap:40px (no justify-content). Stat is always 1 line (90px), so tile-label always starts at the same height across tiles in a row — do NOT use justify-content:center or margin-top:auto on .tile-info.
   ANIMATION: .tile reveal (fade in) — no count-up on tiles
 -->
 
