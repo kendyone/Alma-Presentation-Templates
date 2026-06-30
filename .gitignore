@@ -2,6 +2,16 @@
 images/*
 !images/.gitkeep
 
+# Sample images bundled with the repo
+!images/Avatar01.jpg
+!images/Avatar02.jpg
+!images/Avatar03.jpg
+!images/Avatar04.jpg
+!images/Avatar05.jpg
+!images/Avatar06.jpg
+!images/office.png
+!images/office2.png
+
 # Generated presentations
 output/*
 !output/.gitkeep
