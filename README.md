@@ -7,32 +7,51 @@ Generate branded HTML presentations in the Alma Career design system — just de
 ## Requirements
 
 - [Claude Code](https://claude.ai/code) — desktop app or CLI
+- [Git](https://git-scm.com/downloads) — to download the files
 
 ---
 
 ## Installation
 
-**Option A — Git**
+### Step 1 — Download the files
 
-Windows (PowerShell):
+**On Windows:** Open PowerShell (press `Win + R`, type `powershell`, press Enter) and paste:
+
 ```
 git clone https://github.com/kendyone/Alma-Presentation-Templates.git
+```
+
+**On Mac:** Open Terminal (press `Cmd + Space`, type `terminal`, press Enter) and paste:
+
+```
+git clone https://github.com/kendyone/Alma-Presentation-Templates.git
+```
+
+This creates a folder called `Alma-Presentation-Templates` wherever your terminal is open (usually your home folder).
+
+### Step 2 — Run the setup script
+
+**On Windows** (PowerShell):
+
+```
 cd Alma-Presentation-Templates
 .\setup.ps1
 ```
 
-Mac / Linux:
+**On Mac** (Terminal):
+
 ```
-git clone https://github.com/kendyone/Alma-Presentation-Templates.git
 cd Alma-Presentation-Templates
 bash setup.sh
 ```
 
-**Option B — Download ZIP**
+You should see: `Done! /present is now available in any Claude Code conversation.`
 
-Click the green **Code** button on GitHub → **Download ZIP** → unzip the folder anywhere on your computer. Then open a terminal, `cd` into the unzipped folder, and run the setup script above.
+### Step 3 — Use it
 
-That's it. You can now open any Claude Code conversation and type `/present`.
+Open Claude Code, start a new conversation, and type `/present`.
+
+Claude will ask you a few questions and generate your presentation.
 
 ---
 
@@ -40,28 +59,21 @@ That's it. You can now open any Claude Code conversation and type `/present`.
 
 Type `/present` in Claude Code to start. Claude will guide you through a short onboarding:
 
-1. **Title** — what the presentation will be called
-2. **Topic** — what it's about (the more context, the better)
-3. **Presenters** — names and job titles
-4. **Images** — whether you'll include photos or logos
+1. **Folder path** — where you saved the Alma Presentation Templates folder
+2. **Title** — what the presentation will be called
+3. **Topic** — what it's about (the more context, the better)
+4. **Presenters** — names and job titles
+5. **Images** — whether you'll include photos or logos
 
-After onboarding, Claude proposes a slide structure for your approval, then generates a single self-contained HTML file in the `output/` folder.
+After onboarding, Claude proposes a slide structure for your approval, then generates a single self-contained HTML file. It will tell you exactly where to find it and how to open it.
+
+Navigate slides with **arrow keys** or **space**.
 
 ---
 
 ## Browsing layouts
 
-To browse all available slide templates, start a local preview server in your terminal:
-
-```
-npx serve -p 4200 .
-```
-
-Then open **http://localhost:4200/showcase.html** in your browser.
-
-> Don't have `npx`? Install [Node.js](https://nodejs.org) first (free, one-time setup).
-
-The showcase shows live animated previews of every layout. Use the filter tabs to browse by category, and click the copy button on any card to copy a ready-to-paste prompt like `Use layout 11. Intro — Multi-Speaker`.
+Open the `showcase.html` file from your `Alma-Presentation-Templates` folder directly in your browser. It shows live animated previews of every layout.
 
 ---
 
@@ -69,18 +81,10 @@ The showcase shows live animated previews of every layout. Use the filter tabs t
 
 If your presentation includes speaker photos, logos or other images:
 
-1. Drop the files into the `images/` folder
+1. Drop the files into the `images/` folder inside `Alma-Presentation-Templates`
 2. Tell Claude the filenames (e.g. `jan-novak.jpg`)
 
-Claude will reference them automatically in the generated HTML. Supported formats: JPG, PNG, WebP.
-
----
-
-## Output
-
-Generated presentations are saved to `output/` as self-contained HTML files. Open them directly in any browser, or via the preview server at `http://localhost:4200/output/[filename].html`.
-
-Navigate slides with **arrow keys** or **space**.
+Claude will reference them automatically. Supported formats: JPG, PNG, WebP.
 
 ---
 
