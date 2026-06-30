@@ -68,3 +68,12 @@ Navigate slides with **arrow keys** or **space**.
 ## Requesting a new layout
 
 If you need a slide type that doesn't exist yet, click **Ask for a new template** in the showcase header.
+
+---
+
+## Author
+
+Created by **Jiří Bárta**
+
+- Slack: [almamedia.slack.com/team/U05064Y137X](https://almamedia.slack.com/team/U05064Y137X)
+- Email: [jiri.barta@almamedia.com](mailto:jiri.barta@almamedia.com)
