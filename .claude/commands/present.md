@@ -40,7 +40,7 @@ Ask:
 > Will you be including any images? (presenter photos, logo, supporting visuals…)
 
 **If yes:**
-> Great. Drop them into the `presentation-skill/images/` folder — photos, logos, anything you need. Once they're there, just tell me the filenames (e.g. `jane-smith.jpg`) and I'll include them in the presentation.
+> Great. Drop them into the `images/` folder — photos, logos, anything you need. Once they're there, just tell me the filenames (e.g. `jane-smith.jpg`) and I'll include them in the presentation.
 
 Wait for confirmation of filenames.
 
@@ -74,7 +74,7 @@ If anything is missing, ask for it. Once everything is clear, move to Phase 3.
 
 ### 3a. Read the SPEC
 
-Read `presentation-skill/SPEC.md` — it contains all rules for selecting and filling slide templates.
+Read `SPEC.md` — it contains all rules for selecting and filling slide templates.
 
 ### 3b. Propose the structure
 
@@ -94,7 +94,7 @@ Present the structure to the user for approval. Wait for OK or adjustments.
 
 ### 3c. Read the templates
 
-For each approved layout, read the corresponding file from `presentation-skill/templates/`.
+For each approved layout, read the corresponding file from `templates/`.
 
 ### 3d. Build the output HTML
 
@@ -115,10 +115,10 @@ The output is a **single self-contained HTML file** with no external dependencie
   /* Reset */
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* Animations — inline content of presentation-skill/animations.css */
+  /* Animations — inline content of animations.css */
   [inline animations.css]
 
-  /* Player — inline content of presentation-skill/player.css */
+  /* Player — inline content of player.css */
   [inline player.css]
 
   /* Base slide */
@@ -140,7 +140,7 @@ The output is a **single self-contained HTML file** with no external dependencie
 <div class="player-counter"></div>
 
 <script>
-  /* Player — inline content of presentation-skill/player.js */
+  /* Player — inline content of player.js */
   [inline player.js]
 </script>
 
@@ -158,7 +158,7 @@ The output is a **single self-contained HTML file** with no external dependencie
 
 ### 3e. Save the output
 
-Save as `presentation-skill/output/[slug].html` where slug = presentation title converted to lowercase, diacritics removed, spaces → hyphens (e.g. "Q4 Review 2025" → `q4-review-2025.html`).
+Save as `output/[slug].html` where slug = presentation title converted to lowercase, diacritics removed, spaces → hyphens (e.g. "Q4 Review 2025" → `q4-review-2025.html`).
 
 Tell the user the file path and how to open it (`localhost:4200/output/[file].html` if the server is running, otherwise open directly in the browser).
 
