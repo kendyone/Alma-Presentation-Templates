@@ -45,7 +45,7 @@ After onboarding, Claude proposes a slide structure for your approval, then gene
 
 ## Browsing layouts
 
-To browse all 29 available slide templates, start a local preview server in your terminal:
+To browse all available slide templates, start a local preview server in your terminal:
 
 ```
 npx serve -p 4200 .
